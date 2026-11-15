@@ -47,6 +47,7 @@
 
 ## 📥 下载与随笔
 
+- **支持平台**：目前已提供 **Android** 安装包与 **H5 网页端**本地运行，暂未适配发布 iOS（苹果端）。
 - **Android 安装包**：前往 [Releases](https://github.com/kk-made/suxing-focus/releases) 下载最新 `suxing-1.0.3.apk` 直接安装使用。
 - **创作随笔**：如果你想了解这个小软件背后的想法与制作过程，可以读一读 [《一场对抗引力的飞行》](STORY.md)。
 
