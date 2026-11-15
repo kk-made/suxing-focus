@@ -1,4 +1,4 @@
-![溯星宣传片](docs/suxing-promo.mp4)
+<video src="https://raw.githubusercontent.com/kk-made/suxing-focus/main/docs/suxing-promo.mp4" controls muted playsinline width="100%"></video>
 
 # 溯星（suxing-focus）
 
