@@ -1,3 +1,5 @@
+![溯星宣传片](docs/suxing-promo.mp4)
+
 # 溯星（suxing-focus）
 
 > 学习是一场不可避免的循环，如同巨石总会滚落山脚。  
