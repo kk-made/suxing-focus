@@ -1,4 +1,8 @@
 
+
+https://github.com/user-attachments/assets/8d2dcbde-4244-4e57-a99e-c027cd6edc6d
+
+
 # 溯星（suxing-focus）
 
 > 学习是一场不可避免的循环，如同巨石总会滚落山脚。  
