@@ -45,6 +45,13 @@
 
 ---
 
+## 📥 下载与随笔
+
+- **Android 安装包**：前往 [Releases](https://github.com/kk-made/suxing-focus/releases) 下载最新 `suxing-1.0.3.apk` 直接安装使用。
+- **创作随笔**：如果你想了解这个小软件背后的想法与制作过程，可以读一读 [《一场对抗引力的飞行》](STORY.md)。
+
+---
+
 ## 🛠️ 技术栈
 
 - **框架**：uni-app / Vue 3 / TypeScript / Vite
@@ -93,6 +100,7 @@ suxing-focus/
 │  └─ static/           # 本地字体分片、音频文件、Tab 图标与第三方许可
 ├─ scripts/             # 音频离线渲染与字标核验脚本
 ├─ screenshots/         # 各页面明暗双色预览截图
+├─ STORY.md             # 创作随笔《一场对抗引力的飞行》
 └─ package.json
 ```
 
