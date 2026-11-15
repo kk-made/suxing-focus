@@ -1,0 +1,18 @@
+<svg viewBox="0 0 60 60" width="60" height="60" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="crayon-texture-dot">
+      <feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="3" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.4" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </defs>
+  <!-- 手绘小圆点（未完成态）：一笔画成的歪圈，顶上留一个小缺口 -->
+  <path
+    d="M 34.6 11.8 C 41.2 13.6, 46.6 19.4, 47.4 26.6 C 48.2 34.4, 44 42.4, 36.8 45.9 C 29.6 49.4, 20.4 47.3, 14.8 41.2 C 9.2 35.1, 9.1 25.4, 14.6 19.2 C 17.9 15.5, 21.7 13.2, 25.8 12.2"
+    fill="none"
+    stroke="var(--doodle-stroke, #3A3A3A)"
+    stroke-width="5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    filter="url(#crayon-texture-dot)"
+  />
+</svg>

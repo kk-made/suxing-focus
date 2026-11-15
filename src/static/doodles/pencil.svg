@@ -1,0 +1,32 @@
+<svg viewBox="0 0 200 200" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="crayon-texture-pencil">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </defs>
+  <g filter="url(#crayon-texture-pencil)" stroke="var(--doodle-stroke, #3A3A3A)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <!-- 正在画波浪线的铅笔：目标编辑页·大输入右侧专用 -->
+    <!-- 笔杆：奶油黄，斜斜地朝右上翘起 -->
+    <path d="M 83 159 C 76.5 150.5, 72.5 145.5, 67 140 C 81 127.5, 92 115, 101 103 C 106 108, 111.5 114.5, 117 121 C 104 131, 93.5 145, 83 159 Z" fill="var(--doodle-yellow, #F9E79F)" fill-opacity="0.7" stroke="none" />
+    <!-- 削开的木头笔尖：纸色（只做遮挡，不当色块） -->
+    <path d="M 55 172 C 59 163, 63 151.5, 67 140 C 72.5 145.5, 77.5 152.5, 83 159 C 74.5 163.5, 64.5 168, 55 172 Z" fill="var(--doodle-paper, #FFFFFF)" fill-opacity="0.9" stroke="none" />
+    <!-- 露出的笔芯：一小截墨色 -->
+    <path d="M 56 170.5 C 58 167.5, 60.5 163.5, 62.5 160.5" fill="none" stroke-width="6" stroke-opacity="0.85" />
+    <!-- 金属箍：天空蓝 -->
+    <path d="M 101 103 C 106 108, 111.5 114.5, 117 121 C 119.5 118.5, 122 116, 124 114 C 118.5 107.5, 113 101.5, 108 95 C 105.5 97.5, 103 100, 101 103 Z" fill="var(--doodle-blue, #A9CCE3)" fill-opacity="0.7" stroke="none" />
+    <!-- 橡皮头：樱粉 -->
+    <path d="M 108 95 C 113 101.5, 118.5 107.5, 124 114 C 130.5 108.5, 137 102, 143 93 C 138 87.5, 132.5 81.5, 127 74 C 121 81, 114.5 88, 108 95 Z" fill="var(--doodle-pink, #F5B7B1)" fill-opacity="0.72" stroke="none" />
+    <!-- 笔杆轮廓（上沿 / 下沿 / 金属箍 / 橡皮头 / 笔尖三道） -->
+    <path d="M 67 140 C 81 127.5, 92 115, 101 103" fill="none" />
+    <path d="M 83 159 C 93.5 145, 104 131, 117 121" fill="none" />
+    <path d="M 101 103 C 106 108, 111.5 114.5, 117 121" fill="none" />
+    <path d="M 108 95 C 113 101.5, 118.5 107.5, 124 114" fill="none" />
+    <path d="M 127 74 C 132.5 81.5, 138 87.5, 143 93" fill="none" />
+    <path d="M 55 172 C 59 163, 63 151.5, 67 140" fill="none" />
+    <path d="M 67 140 C 72.5 145.5, 77.5 152.5, 83 159" fill="none" />
+    <path d="M 83 159 C 74.5 163.5, 64.5 168, 55 172" fill="none" />
+    <!-- 正在画下的那条波浪线：笔尖落在线上（铅笔飞走时由页面把它淡掉） -->
+    <path class="pencil-wave" d="M 7 183 C 19 172, 28 189, 40 177 C 45 171, 50 173, 55 170" fill="none" />
+  </g>
+</svg>

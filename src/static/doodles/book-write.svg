@@ -1,0 +1,66 @@
+<svg viewBox="44 49 148 59" width="148" height="59" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="crayon-texture-book-write">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </defs>
+  <g filter="url(#crayon-texture-book-write)" stroke="var(--doodle-stroke, #3A3A3A)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <!-- 一本书：新建目标页底部专用
+         静止：书本合上（薄荷绿封面 + 奶油黄书页块 + 书签）；
+         书写：书本翻开（.bw-open 淡入 / .bw-closed 淡出），左页两行小字、右页一条涂鸦。
+         摊开是一本有厚度、但清爽的书：薄荷绿硬壳从下缘托住整本书，淡薄荷色页芯垫在书页下面，
+         页芯不描边、内部不画压痕线——厚度靠「纸白 / 淡薄荷 / 薄荷绿」三层颜色分开，
+         避免灰色线条和页边轮廓叠在一起；中间是凹下去的书脊，书签从书脊底下垂出来。
+         拿笔的是标题输入框右侧那支铅笔（pages/goal/edit.vue 里 .title-doodle 飞下来），这里不再画笔。
+         视图裁到书本身（viewBox 44 49 148 59，页面按 192rpx 渲染）；落笔点 = (152, 82.5)，edit.vue 按这个比例算飞行的落点。 -->
+    <g class="bw-closed">
+      <!-- 书页块：比封面低一截，露出下方的页边 -->
+      <path d="M 58 70 C 57 68, 59 66.5, 61 66.5 L 174 66.5 C 177 66.5, 179 68, 178.5 70.5 L 177 100 C 176.8 102.5, 175 104, 172.5 104 L 61 104 C 58 104, 56 102.5, 56 100 Z" fill="var(--doodle-yellow, #F9E79F)" fill-opacity="0.55" stroke="none" />
+      <path d="M 58 70 C 57 68, 59 66.5, 61 66.5 L 174 66.5 C 177 66.5, 179 68, 178.5 70.5 L 177 100 C 176.8 102.5, 175 104, 172.5 104 L 61 104 C 58 104, 56 102.5, 56 100 Z" fill="none" />
+
+      <!-- 封面：不透明薄荷绿，盖住书页块的上半截 -->
+      <path d="M 60 56 C 59 54.5, 61 53, 63 53 L 172 53 C 175 53, 177 54.5, 176.5 57 L 175 88 C 174.8 90.5, 173 92, 170.5 92 L 65 92 C 62 92, 60 90.5, 60 88 Z" fill="var(--doodle-green, #A2D9CE)" fill-opacity="0.85" stroke="none" />
+      <path d="M 60 56 C 59 54.5, 61 53, 63 53 L 172 53 C 175 53, 177 54.5, 176.5 57 L 175 88 C 174.8 90.5, 173 92, 170.5 92 L 65 92 C 62 92, 60 90.5, 60 88 Z" fill="none" />
+
+      <!-- 书脊 / 书名两行 / 一条书签 -->
+      <path d="M 68 55 C 67.5 66, 67.5 77, 68 90" fill="none" stroke-width="2.4" />
+      <path d="M 82 68 C 94 67, 106 68, 118 67.5" fill="none" stroke-width="2.4" />
+      <path d="M 82 75 C 90 74.5, 98 75, 104 74.5" fill="none" stroke-width="2.4" />
+      <path d="M 146 91 L 146 101 L 150 97.5 L 154 101 L 154 91" fill="var(--doodle-pink, #F5B7B1)" fill-opacity="0.75" stroke-width="2.2" />
+    </g>
+
+    <g class="bw-open">
+      <!-- 封面：薄荷绿硬壳从页芯下缘露出来，左右略宽，底边托住整本书 -->
+      <path d="M 45.5 94.5 C 50 94.1, 56 94.1, 62 94.3 C 82 94.8, 101 96.5, 118 98.4 C 142 94.2, 169 94.2, 190.5 94.5 L 190.5 105.8 C 169 101.8, 142 101.8, 118 106 C 94 101.8, 67 101.8, 45.5 105.8 Z" fill="var(--doodle-green, #A2D9CE)" fill-opacity="0.9" />
+      <path d="M 45.5 94.5 C 50 94.1, 56 94.1, 62 94.3 C 82 94.8, 101 96.5, 118 98.4 C 142 94.2, 169 94.2, 190.5 94.5 L 190.5 105.8 C 169 101.8, 142 101.8, 118 106 C 94 101.8, 67 101.8, 45.5 105.8 Z" fill="none" />
+
+      <!-- 书脊：夹在左右两页之间的绿色装订条，底端接住封面 -->
+      <path d="M 114 78.8 L 122 78.8 L 122 101.8 L 114 101.8 Z" fill="var(--doodle-green, #A2D9CE)" fill-opacity="0.9" stroke="none" />
+
+      <!-- 页芯：淡薄荷色的纸叠，不描边——厚度只靠纸色和封面分开，避免内部灰线与页边叠在一起 -->
+      <path d="M 47 78 C 66 71.5, 95 72.5, 115 79 L 115 101.5 C 95 97.5, 67 97.5, 47 102.3 C 46.4 94, 46.6 85, 47 78 Z" fill="var(--doodle-paper, #FFFFFF)" fill-opacity="0.98" stroke="none" />
+      <path d="M 47 78 C 66 71.5, 95 72.5, 115 79 L 115 101.5 C 95 97.5, 67 97.5, 47 102.3 C 46.4 94, 46.6 85, 47 78 Z" fill="var(--doodle-green, #A2D9CE)" fill-opacity="0.22" stroke="none" />
+      <path d="M 121 79 C 141 72.5, 170 71.5, 189 78 C 189.4 85, 189.6 94, 189 102.3 C 169 97.5, 141 97.5, 121 101.5 Z" fill="var(--doodle-paper, #FFFFFF)" fill-opacity="0.98" stroke="none" />
+      <path d="M 121 79 C 141 72.5, 170 71.5, 189 78 C 189.4 85, 189.6 94, 189 102.3 C 169 97.5, 141 97.5, 121 101.5 Z" fill="var(--doodle-green, #A2D9CE)" fill-opacity="0.22" stroke="none" />
+
+      <!-- 书页：翻开的左右两页（纸白，只带一点薄荷气），压在页芯上 -->
+      <path d="M 47 78 C 66 71.5, 95 72.5, 115 79 L 115 93.5 C 95 89.5, 67 89.5, 47 94 C 46.7 88.5, 46.7 83.5, 47 78 Z" fill="var(--doodle-paper, #FFFFFF)" fill-opacity="0.98" stroke="none" />
+      <path d="M 47 78 C 66 71.5, 95 72.5, 115 79 L 115 93.5 C 95 89.5, 67 89.5, 47 94 C 46.7 88.5, 46.7 83.5, 47 78 Z" fill="var(--doodle-green, #A2D9CE)" fill-opacity="0.05" stroke="none" />
+      <path d="M 47 78 C 66 71.5, 95 72.5, 115 79 L 115 93.5 C 95 89.5, 67 89.5, 47 94 C 46.7 88.5, 46.7 83.5, 47 78 Z" fill="none" />
+      <path d="M 121 79 C 141 72.5, 170 71.5, 189 78 C 189.3 83.5, 189.3 88.5, 189 94 C 169 89.5, 141 89.5, 121 93.5 Z" fill="var(--doodle-paper, #FFFFFF)" fill-opacity="0.98" stroke="none" />
+      <path d="M 121 79 C 141 72.5, 170 71.5, 189 78 C 189.3 83.5, 189.3 88.5, 189 94 C 169 89.5, 141 89.5, 121 93.5 Z" fill="var(--doodle-green, #A2D9CE)" fill-opacity="0.05" stroke="none" />
+      <path d="M 121 79 C 141 72.5, 170 71.5, 189 78 C 189.3 83.5, 189.3 88.5, 189 94 C 169 89.5, 141 89.5, 121 93.5 Z" fill="none" />
+
+      <!-- 书签：从书脊底下垂出来的一小截樱粉飘带 -->
+      <path d="M 118.2 100.6 L 120.8 100.6 L 121.3 106.8 L 119.7 105.6 L 118 106.8 Z" fill="var(--doodle-pink, #F5B7B1)" fill-opacity="0.9" stroke-width="2" />
+
+      <!-- 左页：两行小字，离页边留足空 -->
+      <path d="M 57 82 C 71 80.3, 85 82.1, 99 80.3" fill="none" stroke-width="1.8" stroke-opacity="0.28" />
+      <path d="M 57 85.8 C 69 84.2, 81 86, 92 84.2" fill="none" stroke-width="1.8" stroke-opacity="0.28" />
+
+      <!-- 右页：正在写下的涂鸦（描边动画） -->
+      <path class="bw-scribble" pathLength="100" d="M 130 83 C 136 79, 142 86, 148 82 C 154 78, 160 85, 166 81 C 170 79, 174 80, 177 82" fill="none" stroke-width="2.4" stroke-opacity="0.8" />
+    </g>
+  </g>
+</svg>

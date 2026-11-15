@@ -1,0 +1,16 @@
+<svg viewBox="0 0 200 200" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="crayon-texture-star">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </defs>
+  <g filter="url(#crayon-texture-star)" stroke="var(--doodle-stroke, #3A3A3A)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <!-- 发光的小星星：底部面板·智能排期专用 -->
+    <path d="M 107 52 C 112 60, 114 78, 116 88 C 127 88, 140 91, 150 94 C 143 100, 128 107, 121 114 C 123 128, 124 140, 125 150 C 114 143, 105 133, 97 126 C 87 132, 73 139, 64 142 C 68 129, 74 117, 78 108 C 70 101, 60 87, 54 80 C 66 80, 81 81, 90 84 C 95 71, 103 59, 107 52 Z" fill="var(--doodle-yellow, #F9E79F)" fill-opacity="0.7" stroke="none" />
+    <path d="M 90 84 C 95 71, 103 59, 107 52 C 112 60, 114 78, 116 88 C 127 88, 140 91, 150 94 C 143 100, 128 107, 121 114 C 123 128, 124 140, 125 150 C 114 143, 105 133, 97 126 C 87 132, 73 139, 64 142 C 68 129, 74 117, 78 108 C 72 102, 62 88, 57 80" fill="none" />
+    <path d="M 152 46 C 152.5 51, 153 55, 153.5 60" fill="none" />
+    <path d="M 147 53 C 152 52.5, 156 53, 160 53.5" fill="none" />
+    <path d="M 158 130 C 159.5 129, 161 130, 161 132 C 161 134, 159.5 135, 158 134.5 C 156.5 134, 156.5 131, 158 130 Z" fill="var(--doodle-yellow, #F9E79F)" fill-opacity="0.8" stroke="none" />
+  </g>
+</svg>

@@ -1,0 +1,20 @@
+<svg viewBox="0 0 200 200" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="crayon-texture-pouch">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </defs>
+  <g filter="url(#crayon-texture-pouch)" stroke="var(--doodle-stroke, #3A3A3A)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <!-- 收口的锦囊：目标详情页·「收入囊中」（归档）专用 -->
+    <path d="M 62 78 C 57 110, 56 138, 67 157 C 88 165, 114 165, 134 157 C 145 138, 143 108, 138 78 C 116 71, 84 71, 62 78 Z" fill="var(--doodle-purple, #D7BDE2)" fill-opacity="0.55" stroke="none" />
+    <path d="M 62 78 C 57 110, 56 138, 67 157 C 88 165, 114 165, 134 157 C 145 138, 143 108, 138 78" fill="none" />
+    <!-- 袋口的两个小折角与束口绳 -->
+    <path d="M 66 78 C 70 62, 82 52, 96 52 C 104 52, 112 58, 116 66" fill="none" stroke-width="2" />
+    <path d="M 132 78 C 129 64, 122 56, 116 54" fill="none" stroke-width="2" />
+    <path d="M 72 77 C 82 71, 92 78, 101 74 C 110 78, 122 72, 131 77" fill="none" stroke-width="2" />
+    <path d="M 128 76 C 138 79, 144 86, 149 94 C 146 96, 141 95, 138 92" fill="none" stroke-width="2" />
+    <!-- 囊中收着的一颗小星星 -->
+    <path d="M 100 100 C 103 108, 105 115, 105 120 C 112 121, 119 124, 124 128 C 117 132, 110 135, 106 140 C 107 147, 106 154, 105 160 C 100 154, 95 149, 89 146 C 82 149, 75 153, 71 156 C 73 149, 76 142, 78 136 C 73 132, 67 127, 64 122 C 71 121, 78 120, 84 121 C 89 114, 96 105, 100 100 Z" fill="var(--doodle-yellow, #F9E79F)" fill-opacity="0.8" stroke-width="2" />
+  </g>
+</svg>

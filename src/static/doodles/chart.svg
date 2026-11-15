@@ -1,0 +1,19 @@
+<svg viewBox="0 0 200 200" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="crayon-texture-chart">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </defs>
+  <g filter="url(#crayon-texture-chart)" stroke="var(--doodle-stroke, #3A3A3A)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <!-- 弯曲的柱状图：统计页专用 -->
+    <path d="M 58 165 C 57 148, 57.5 139, 59 128 C 66 125.5, 74 126, 79 127.5 C 80.5 138, 80 152, 80.5 164 C 73 166.5, 65 167, 58 165 Z" fill="var(--doodle-green, #A2D9CE)" fill-opacity="0.7" stroke="none" />
+    <path d="M 88 164.5 C 87 144, 87.5 128, 89 108 C 96 105, 104 105.5, 109 107 C 110.5 126, 110 145, 110.5 163.5 C 103 166, 95 166, 88 164.5 Z" fill="var(--doodle-blue, #A9CCE3)" fill-opacity="0.7" stroke="none" />
+    <path d="M 118 164 C 117 138, 117.5 116, 119 90 C 126 87, 134 87.5, 139 89 C 140.5 114, 140 138, 140.5 163 C 133 165.5, 125 166, 118 164 Z" fill="var(--doodle-pink, #F5B7B1)" fill-opacity="0.7" stroke="none" />
+    <path d="M 148 163.5 C 147 148, 147.5 138, 148.5 126 C 153 124.5, 158 125, 161 126 C 162 137, 161.5 150, 162 162.5 C 157 164.5, 153 165, 148 163.5 Z" fill="var(--doodle-yellow, #F9E79F)" fill-opacity="0.7" stroke="none" />
+    <path d="M 44 167 C 70 163.5, 98 168, 126 165.5" fill="none" />
+    <path d="M 134 165 C 146 164, 156 166, 164 164.5" fill="none" />
+    <path d="M 52 120 C 52 115, 52.5 112, 53 108" fill="none" />
+    <path d="M 48 114 C 52 113.5, 55 114, 58 114" fill="none" />
+  </g>
+</svg>

@@ -1,0 +1,71 @@
+{
+    "name" : "溯星",
+    /* DCloud 应用标识（开源仓库留空，本地打包时请自行填写） */
+    "appid" : "",
+    "description" : "溯星：本地单机学习目标、计划与复习管理；不登录、不联网，数据只存本机",
+    "versionName" : "1.0.3",
+    "versionCode" : "103",
+    "transformPx" : false,
+    /* 5+App特有相关 */
+    "app-plus" : {
+        "usingComponents" : true,
+        "nvueStyleCompiler" : "uni-app",
+        "compilerVersion" : 3,
+        /* 跟随系统主题：App 端开启后 getSystemInfoSync().theme 与 onThemeChange 才有效 */
+        "darkmode" : true,
+        "splashscreen" : {
+            "alwaysShowBeforeRender" : true,
+            "waiting" : true,
+            "autoclose" : true,
+            "delay" : 0
+        },
+        /* 模块配置 */
+        "modules" : {},
+        /* 应用发布信息 */
+        "distribute" : {
+            /* 应用图标：纸白底 / 斜环 / 薄荷小点，与 splash 页同一套配色 */
+            "icons" : {
+                "android" : {
+                    "mdpi" : "unpackage/res/icons/48x48.png",
+                    "hdpi" : "unpackage/res/icons/72x72.png",
+                    "xhdpi" : "unpackage/res/icons/96x96.png",
+                    "xxhdpi" : "unpackage/res/icons/144x144.png",
+                    "xxxhdpi" : "unpackage/res/icons/192x192.png"
+                }
+            },
+            /* android打包配置：本地单机只保留触感反馈权限，不申请网络/相机/账户/存储权限 */
+            "android" : {
+                "permissions" : [ "<uses-permission android:name=\"android.permission.VIBRATE\"/>" ]
+            },
+            /* ios打包配置 */
+            "ios" : {
+                "dSYMs" : false
+            },
+            /* SDK配置 */
+            "sdkConfigs" : {}
+        }
+    },
+    /* 快应用特有相关 */
+    "quickapp" : {},
+    /* 小程序特有相关 */
+    "mp-weixin" : {
+        "appid" : "",
+        "setting" : {
+            "urlCheck" : false
+        },
+        "usingComponents" : true
+    },
+    "mp-alipay" : {
+        "usingComponents" : true
+    },
+    "mp-baidu" : {
+        "usingComponents" : true
+    },
+    "mp-toutiao" : {
+        "usingComponents" : true
+    },
+    "uniStatistics" : {
+        "enable" : false
+    },
+    "vueVersion" : "3"
+}

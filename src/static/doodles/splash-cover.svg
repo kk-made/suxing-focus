@@ -1,0 +1,79 @@
+<svg class="cover-art" viewBox="0 0 320 260" xmlns="http://www.w3.org/2000/svg">
+        <g
+          fill="none"
+          stroke="var(--doodle-stroke, #3A3A3A)"
+          stroke-width="2.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path class="slope" pathLength="1" d="M 20 238 C 80 230, 140 217, 190 201 C 232 188, 273 171, 302 159" />
+          <path
+            class="ridge"
+            d="M 42 246 C 96 238, 152 225, 200 209 C 240 196, 276 181, 300 171"
+            stroke-opacity="0.22"
+            stroke-width="2"
+          />
+          <g class="grass" stroke-opacity="0.3" stroke-width="2">
+            <path d="M 76 250 C 74 254, 73 256, 72 258" />
+            <path d="M 138 238 C 136 242, 135 245, 134 247" />
+            <path d="M 198 222 C 196 226, 195 229, 194 231" />
+            <path d="M 256 202 C 254 206, 253 209, 252 211" />
+          </g>
+
+          <!-- 巨石：先落在山脚，再沿虚线向上，最后在坡顶化成星 -->
+          <g class="stone-rise">
+            <g class="stone-spin">
+              <g class="boulder">
+                <path
+                  d="M 56 194 C 57 177, 73 167, 89 169.8 C 106 172.7, 115 185, 112 201 C 108 217, 90 224, 74 220 C 60 216, 53 205, 56 194 Z"
+                  fill="var(--doodle-blue, #A9CCE3)"
+                  fill-opacity="0.42"
+                />
+                <path d="M 70 182 C 75 185, 78 189, 80 194" stroke-opacity="0.24" stroke-width="2" />
+              </g>
+            </g>
+          </g>
+
+          <!-- 滚落的痕迹 -->
+          <g class="roll" stroke-opacity="0.42" stroke-width="2">
+            <path d="M 120 178 C 126 173, 133 169, 141 167" />
+            <path d="M 134 199 C 142 196, 150 193, 158 191" />
+          </g>
+          <g class="dust" fill="var(--doodle-stroke, #3A3A3A)" fill-opacity="0.28" stroke="none">
+            <circle cx="54" cy="222" r="1.9" />
+            <circle cx="45" cy="213" r="1.3" />
+          </g>
+
+          <!-- 盘旋两圈、伸向星的虚线 -->
+          <path
+            class="coil"
+            transform="translate(6 -4)"
+            stroke-dasharray="2 11"
+            stroke-opacity="0.62"
+            d="M 108.0 186.0 L 101.0 184.8 L 94.1 182.7 L 87.6 179.6 L 81.6 175.7 L 76.1 171.0 L 71.3 165.6 L 67.3 159.6 L 64.0 153.1 L 61.7 146.2 L 60.2 139.1 L 59.7 131.9 L 60.1 124.7 L 61.4 117.6 L 63.6 110.8 L 66.6 104.3 L 70.4 98.3 L 74.9 92.9 L 80.0 88.1 L 85.6 84.1 L 91.7 80.8 L 98.0 78.4 L 104.5 76.8 L 111.0 76.1 L 117.5 76.3 L 123.9 77.2 L 129.9 79.0 L 135.6 81.6 L 140.8 84.8 L 145.4 88.7 L 149.4 93.0 L 152.7 97.8 L 155.2 103.0 L 157.0 108.4 L 157.9 113.8 L 158.1 119.3 L 157.5 124.7 L 156.1 129.9 L 154.0 134.8 L 151.2 139.3 L 147.8 143.3 L 143.9 146.8 L 139.5 149.6 L 134.8 151.8 L 129.8 153.2 L 124.6 154.0 L 119.4 154.0 L 114.2 153.3 L 109.2 151.8 L 104.3 149.7 L 99.8 146.9 L 95.7 143.5 L 92.1 139.7 L 89.0 135.3 L 86.5 130.6 L 84.6 125.6 L 83.4 120.4 L 82.9 115.1 L 83.0 109.8 L 83.8 104.5 L 85.2 99.4 L 87.3 94.6 L 89.9 90.1 L 93.0 86.0 L 96.5 82.3 L 100.5 79.2 L 104.7 76.6 L 109.1 74.6 L 113.7 73.2 L 118.4 72.4 L 123.0 72.2 L 127.6 72.6 L 131.9 73.6 C 162 70, 205 64, 238 59"
+          />
+
+          <!-- 星：石升到此处时化成它 -->
+          <path
+            class="star"
+            d="M 256 34 L 261 49 L 276 56 L 261 63 L 256 78 L 251 63 L 236 56 L 251 49 Z"
+            fill="var(--doodle-yellow, #F9E79F)"
+            fill-opacity="0.92"
+            stroke-width="2"
+          />
+          <circle
+            class="star-burst"
+            cx="256"
+            cy="56"
+            r="13"
+            stroke="var(--doodle-yellow, #F9E79F)"
+            stroke-opacity="0.6"
+            stroke-width="1.6"
+          />
+        </g>
+        <g class="faint-dots" fill="var(--doodle-stroke, #3A3A3A)" fill-opacity="0.25" stroke="none">
+          <circle cx="36" cy="70" r="2.2" />
+          <circle cx="299" cy="116" r="1.8" />
+          <circle cx="206" cy="44" r="1.4" />
+        </g>
+      </svg>

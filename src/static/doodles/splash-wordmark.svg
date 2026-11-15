@@ -1,0 +1,58 @@
+<svg class="wordmark" viewBox="0 0 220 130" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="溯星">
+        <defs>
+          <filter id="wm-crayon" x="-6%" y="-6%" width="112%" height="112%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.2" xChannelSelector="R" yChannelSelector="G" />
+          </filter>
+        </defs>
+        <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" filter="url(#wm-crayon)">
+          <g class="wm-char wm-char--su">
+            <!-- 氵：上点、下点、长提 -->
+            <g>
+              <path class="wm-stroke" stroke-width="3.4" pathLength="100" style="--o:0" d="M 17.4 16.2 Q 19.8 22 24 28.7" />
+              <path class="wm-stroke" stroke-width="3.2" pathLength="100" style="--o:1" d="M 11.6 55.1 Q 15.4 57.9 20.1 59.7" />
+              <path class="wm-stroke" stroke-width="2.9" pathLength="100" style="--o:2" d="M 9 96 C 12.4 88.5 17.3 77.5 24.6 65.5" />
+            </g>
+            <!-- 丷 -->
+            <g>
+              <path class="wm-stroke" stroke-width="3.2" pathLength="100" style="--o:3" d="M 35.5 14.1 Q 38.4 20.2 41.2 25.9" />
+              <path class="wm-stroke" stroke-width="3.2" pathLength="100" style="--o:4" d="M 45.9 23.2 Q 50 19 54.3 13.3" />
+            </g>
+            <!-- 一 -->
+            <g>
+              <path class="wm-stroke" stroke-width="3.4" pathLength="100" style="--o:5" d="M 16.2 38.8 Q 34.8 35.1 54.8 30.2" />
+            </g>
+            <!-- 屰：竖折、短竖、长撇 -->
+            <g>
+              <path class="wm-stroke" stroke-width="2.9" pathLength="100" style="--o:6" d="M 31.9 54.4 Q 32.6 60.2 32.9 65 Q 40.5 64.3 50.6 63.1" />
+              <path class="wm-stroke" stroke-width="3" pathLength="100" style="--o:7" d="M 52 58.3 Q 52.8 62.8 53.3 67.1" />
+              <path class="wm-stroke" stroke-width="2.7" pathLength="100" style="--o:8" d="M 45.1 40.1 C 39.2 57 33.2 77.5 27.2 99.9" />
+            </g>
+            <!-- 月：长撇、横折、两短横 -->
+            <g>
+              <path class="wm-stroke" stroke-width="2.7" pathLength="100" style="--o:9" d="M 60.9 19.3 Q 59.4 58 55.8 101.9" />
+              <path class="wm-stroke" stroke-width="2.9" pathLength="100" style="--o:10" d="M 60.9 19.3 Q 68.6 17.4 76.9 18 Q 79.4 52 82.3 113.6" />
+              <path class="wm-stroke" stroke-width="2.6" pathLength="100" style="--o:11" d="M 64.1 45.9 Q 68 45.6 71.9 45.1" />
+              <path class="wm-stroke" stroke-width="2.6" pathLength="100" style="--o:12" d="M 68 60.2 Q 71.5 59.9 75 59.4" />
+            </g>
+          </g>
+          <g class="wm-char wm-char--xing">
+            <!-- 日：外框随手画成一个圆圈，中间一横 -->
+            <g>
+              <path class="wm-stroke" stroke-width="3.2" pathLength="100" style="--o:13" d="M 124.4 6 A 20.8 20.8 0 0 0 103.4 31.1" />
+              <path class="wm-stroke" stroke-width="3.2" pathLength="100" style="--o:14" d="M 127.3 6.3 A 20.8 20.8 0 0 1 133.5 45.2" />
+              <path class="wm-stroke" stroke-width="2.8" pathLength="100" style="--o:15" d="M 109.4 29.7 Q 120.5 28.3 132.2 27.5" />
+              <path class="wm-stroke" stroke-width="2.6" pathLength="100" style="--o:16" d="M 104.9 35.6 A 20.8 20.8 0 0 0 135.6 43.8" />
+            </g>
+            <!-- 生：短撇、两横、长竖、长底横 -->
+            <g>
+              <path class="wm-stroke" stroke-width="3.4" pathLength="100" style="--o:17" d="M 104.2 53.8 Q 104.6 63 105.5 72.3" />
+              <path class="wm-stroke" stroke-width="2.8" pathLength="100" style="--o:18" d="M 109.1 65.2 Q 123 62.5 138.2 59.3" />
+              <path class="wm-stroke" stroke-width="2.8" pathLength="100" style="--o:19" d="M 114.8 79.5 Q 130 77 147.3 73.6" />
+              <path class="wm-stroke" stroke-width="2.8" pathLength="100" style="--o:20" d="M 123.4 51.2 Q 124 72 124.3 94.7" />
+              <path class="wm-stroke" stroke-width="3.4" pathLength="100" style="--o:21" d="M 99.5 97 Q 145 94.5 191.5 89.9" />
+            </g>
+          </g>
+          <path class="wm-star" d="M 198 2 L 200 8 L 206 9.5 L 200 11 L 198 17 L 196 11 L 190 9.5 L 196 8 Z" fill="currentColor" stroke="none" />
+        </g>
+      </svg>

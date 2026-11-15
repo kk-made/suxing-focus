@@ -1,0 +1,20 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.json",
+  "compilerOptions": {
+    "sourceMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "lib": ["esnext", "dom"],
+    "types": ["@dcloudio/types"],
+
+    /* ---- 严格模式增强（需求：TypeScript 严格模式） ---- */
+    "strict": true, // 显式声明（@vue/tsconfig 基座已开，防止未来基座变更）
+    "noImplicitOverride": true, // 重写父类方法必须显式 override
+    "noFallthroughCasesInSwitch": true, // switch 分支禁止意外穿透
+    "noImplicitReturns": true, // 函数所有分支必须有返回值
+    "allowUnreachableCode": false // 禁止不可达代码
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
+}

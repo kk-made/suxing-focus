@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      var coverSupport = 'CSS' in window && typeof CSS.supports === 'function' && (CSS.supports('top: env(a)') ||
+        CSS.supports('top: constant(a)'))
+      document.write(
+        '<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0' +
+        (coverSupport ? ', viewport-fit=cover' : '') + '" />')
+    </script>
+    <title>溯星</title>
+    <script>
+      // H5 刷新或直接打开任意页面时，先经过启动封面；记住原目标，封面结束后再回去。
+      // 用 replaceState 改写 hash，不额外增加一条浏览历史。
+      (function () {
+        try {
+          var hash = window.location.hash.replace(/^#/, '')
+          if (!hash) hash = '/pages/index/index'
+          if (hash.indexOf('/pages/splash/index') === 0) return
+          window.sessionStorage.setItem('suxing.splashNext', hash)
+          var url = window.location.pathname + window.location.search + '#/pages/splash/index'
+          window.history.replaceState(null, '', url)
+        } catch (e) {}
+      })()
+    </script>
+    <!--preload-links-->
+    <!--app-context-->
+  </head>
+  <body>
+    <div id="app"><!--app-html--></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

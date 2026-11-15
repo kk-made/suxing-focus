@@ -1,0 +1,1637 @@
+/**
+ * 暗夜模式皮肤 —— DESIGN.md V5.3「暖调深灰」
+ * ============================================================
+ * 生效条件：html.theme-dark（H5 / App 由 utils/theme.ts 切换；小程序不应用）。
+ * 设计要点（不是简单反色）：
+ * 1. 底色 = 暖调深灰 #1A1A18，body 铺一张固定的星座底图（static/starmap.svg）。
+ *    单一尘埃色（#8C8C86、整体约 8% 微光），星星只在内容间隙若有若无。
+ * 2. 面（卡片/面板）= #20201E（仅比背景亮一点，不做明显填充），靠 1px 描边 #333330
+ *    划出结构；留白感来自卡片之间的空隙，禁止纯黑实底。
+ * 3. 文字 = 暖白 #EDEDE8 / 暖灰 #8C8C86 / 弱灰 #6A6A64，层次与浅色一一对应。
+ * 4. 点缀色 = 陶土暖橙 #B87B5A（全站唯一的暖光：选中 / 已完成 / 今日 / 进度），
+ *    对应浅色主题里薄荷的地位；暖色按压在夜里变成低亮暖光。
+ * 5. 插画（DoodleIcon 内联 SVG）：颜色全部走 --doodle-* 变量，暗色值在本文件覆盖（见第 1 节色板）。
+ *
+ * 选择器约定：所有规则以 html.theme-dark 开头（特异性比页面 scoped 规则高一档）。
+ * uni 内部组件类名（页头 / tabBar / picker-view / 日历弹层）按 H5 运行时 DOM 校准。
+ */
+
+/* ==================== 1. 宿主与星座底图 ==================== */
+
+html.theme-dark body,
+html .theme-dark body {
+  background-color: #1a1a18 !important;
+  background-image: url('/static/starmap.svg?v=52');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* H5 页头（导航栏） */
+html.theme-dark uni-page-head,
+html .theme-dark uni-page-head {
+  background-color: #1a1a18 !important;
+  box-shadow: 0 1px 0 0 #2a2a27 !important;
+}
+
+html.theme-dark uni-page-head .uni-page-head__title,
+html .theme-dark uni-page-head .uni-page-head__title,
+html.theme-dark uni-page-head .uni-page-head-title,
+html .theme-dark uni-page-head .uni-page-head-title,
+html.theme-dark uni-page-head .uni-btn-icon,
+html .theme-dark uni-page-head .uni-btn-icon {
+  color: #EDEDE8 !important;
+}
+
+/* H5 底部 tabBar（setTabBarStyle 已同步，这里兜底覆盖内联样式） */
+html.theme-dark uni-tabbar .uni-tabbar,
+html .theme-dark uni-tabbar .uni-tabbar {
+  background-color: #1a1a18 !important;
+}
+
+/* 选中态由 setTabBarStyle 的行内颜色驱动（H5 无 active 类，行内 style 即选中标记），
+   这里不能再用 !important 兜底覆盖，否则会盖掉选中项的行内色 */
+
+html.theme-dark uni-tabbar .uni-tabbar__border,
+html .theme-dark uni-tabbar .uni-tabbar__border {
+  background-color: #2a2a27 !important;
+}
+
+/* 页面根容器：透明，让星座底图透出；文字基色换暖白 */
+html.theme-dark .today,
+html .theme-dark .today,
+html .today.theme-dark,
+html.theme-dark .goals,
+html .theme-dark .goals,
+html .goals.theme-dark,
+html.theme-dark .detail,
+html .theme-dark .detail,
+html .detail.theme-dark,
+html.theme-dark .edit,
+html .theme-dark .edit,
+html .edit.theme-dark,
+html.theme-dark .schedule,
+html .theme-dark .schedule,
+html .schedule.theme-dark,
+html.theme-dark .stats,
+html .theme-dark .stats,
+html .stats.theme-dark,
+html.theme-dark .mine,
+html .theme-dark .mine,
+html .mine.theme-dark,
+html.theme-dark .guide,
+html .theme-dark .guide,
+html .guide.theme-dark {
+  background-color: transparent;
+  color: #EDEDE8;
+}
+
+/* 目标详情页：新步骤落位行的淡暖闪光（夜里压暗一档；浅色兜底在组件 keyframes 里） */
+html.theme-dark .detail,
+html .theme-dark .detail,
+html .detail.theme-dark {
+  --step-flash: rgba(245, 213, 184, 0.16);
+}
+
+/* 插画蜡笔色板（暗色）：墨线换暖灰、马卡龙压暗一档、纸色换暖面——供内联 SVG 插画从 CSS 变量取色 */
+html.theme-dark page,
+html .theme-dark page {
+  --doodle-stroke: #8C8C86;
+  --doodle-pine: #87A090;
+  --doodle-green: #5A8B82;
+  --doodle-blue: #5A7A9A;
+  --doodle-pink: #A87070;
+  --doodle-yellow: #9A8B5A;
+  --doodle-purple: #7A6A8A;
+  --doodle-paper: #20201E;
+  /* 成就收藏集（V5.25）：夜里是暖灰底上的近黑纸片，薄荷线压暗但不刺眼 */
+  --book-board: #20201E;
+  --book-edge: #33312C;
+  --book-paper: #1A1A18;
+  --book-stage: #1A1A18;
+  --book-seam: #5E9A8C;
+  --book-mint: #7FB3A6;
+  --book-mint-ink: #8FC7BA;
+  --book-hairline: rgba(255, 255, 255, 0.08);
+  --book-grain: rgba(255, 255, 255, 0.018);
+  --book-ink: #8C8C86;
+  --book-title: #EDEDE8;
+  --book-mute: #8C8C86;
+  --book-folio: #6F6B64;
+}
+
+/* 烟花（V5.14）：蜡笔色两套主题共用同一档亮马卡龙，夜里只把虚化底压深一档 */
+html.theme-dark .fw,
+html .theme-dark .fw,
+html .fw.theme-dark {
+  background-color: rgba(0, 0, 0, 0.12);
+}
+
+/* 完成提示（今日页）：夜里的纸片与文字 */
+html.theme-dark .done-toast,
+html .theme-dark .done-toast,
+html .done-toast.theme-dark {
+  background-color: #20201e;
+  border-color: #333330;
+  color: #EDEDE8;
+}
+
+/* 状态圆点（StatusDot V5.8 手绘）：点 / 勾的颜色走 --doodle-stroke / --doodle-pink 变量。
+   这里只管按住反馈——夜里为低亮暖光（与暖色按压体系同档） */
+html.theme-dark .dot--holding,
+html .theme-dark .dot--holding,
+html .dot--holding.theme-dark {
+  background-color: rgba(245, 213, 184, 0.16);
+}
+
+/* 进度虚线（ProgressLine）：轨道换暖灰虚线，已完成段换陶土暖橙（--pline-fill）。
+   由组件把默认色写成 CSS 变量，行内样式也能被主题接管。 */
+html.theme-dark .pline,
+html .theme-dark .pline,
+html .pline.theme-dark {
+  --pline-fill: #b87b5a;
+  background-image: repeating-linear-gradient(
+    to right,
+    #2e2e2b 0,
+    #2e2e2b 4px,
+    transparent 4px,
+    transparent 8px
+  );
+}
+
+html.theme-dark .pline__fill,
+html .theme-dark .pline__fill,
+html .pline__fill.theme-dark {
+  background-color: transparent;
+}
+
+/* ==================== 2. 通用文字 / 面 / 悬挂组件 ==================== */
+
+html.theme-dark uni-page-body,
+html .theme-dark uni-page-body {
+  color: #EDEDE8;
+}
+
+/* 面（卡片）：仅比背景亮一档 + 1px 暖灰描边，结构靠「线」划出 */
+html.theme-dark .card,
+html .theme-dark .card,
+html .card.theme-dark,
+html.theme-dark .done-card,
+html .theme-dark .done-card,
+html .done-card.theme-dark,
+html.theme-dark .goal-card,
+html .theme-dark .goal-card,
+html .goal-card.theme-dark {
+  background-color: #20201e;
+  border-color: #333330;
+}
+
+/* 主文字（暖白） */
+html.theme-dark .hero-num,
+html .theme-dark .hero-num,
+html .hero-num.theme-dark,
+html.theme-dark .metric-value,
+html .theme-dark .metric-value,
+html .metric-value.theme-dark,
+html.theme-dark .done-title,
+html .theme-dark .done-title,
+html .done-title.theme-dark,
+html.theme-dark .empty-title,
+html .theme-dark .empty-title,
+html .empty-title.theme-dark,
+html.theme-dark .g-lead-title,
+html .theme-dark .g-lead-title,
+html .g-lead-title.theme-dark,
+html.theme-dark .task-title,
+html .theme-dark .task-title,
+html .task-title.theme-dark,
+html.theme-dark .goal-title,
+html .theme-dark .goal-title,
+html .goal-title.theme-dark,
+html.theme-dark .title,
+html .theme-dark .title,
+html .title.theme-dark,
+html.theme-dark .section-title,
+html .theme-dark .section-title,
+html .section-title.theme-dark,
+html.theme-dark .form-title,
+html .theme-dark .form-title,
+html .form-title.theme-dark,
+html.theme-dark .card-title,
+html .theme-dark .card-title,
+html .card-title.theme-dark,
+html.theme-dark .dist-title,
+html .theme-dark .dist-title,
+html .dist-title.theme-dark,
+html.theme-dark .log-title,
+html .theme-dark .log-title,
+html .log-title.theme-dark,
+html.theme-dark .sheet-title,
+html .theme-dark .sheet-title,
+html .sheet-title.theme-dark,
+html.theme-dark .sheet-item-title,
+html .theme-dark .sheet-item-title,
+html .sheet-item-title.theme-dark,
+html.theme-dark .sheet-label,
+html .theme-dark .sheet-label,
+html .sheet-label.theme-dark,
+html.theme-dark .step-value,
+html .theme-dark .step-value,
+html .step-value.theme-dark,
+html.theme-dark .cand-title,
+html .theme-dark .cand-title,
+html .cand-title.theme-dark,
+html.theme-dark .s-line,
+html .theme-dark .s-line,
+html .s-line.theme-dark,
+html.theme-dark .day-date,
+html .theme-dark .day-date,
+html .day-date.theme-dark,
+html.theme-dark .book-entry-title,
+html .theme-dark .book-entry-title,
+html .book-entry-title.theme-dark,
+html.theme-dark .u-name,
+html .theme-dark .u-name,
+html .u-name.theme-dark {
+  color: #EDEDE8;
+}
+
+/* 数字加一点点暖辉（夜里的一盏小灯） */
+html.theme-dark .hero-num,
+html .theme-dark .hero-num,
+html .hero-num.theme-dark,
+html.theme-dark .metric-value,
+html .theme-dark .metric-value,
+html .metric-value.theme-dark {
+  color: #f4f4ef;
+  text-shadow: 0 0 32rpx rgba(237, 232, 220, 0.16);
+}
+
+/* 次文字（暖灰） */
+html.theme-dark .hero-unit,
+html .theme-dark .hero-unit,
+html .hero-unit.theme-dark,
+html.theme-dark .metric-label,
+html .theme-dark .metric-label,
+html .metric-label.theme-dark,
+html.theme-dark .done-sub,
+html .theme-dark .done-sub,
+html .done-sub.theme-dark,
+html.theme-dark .empty-sub,
+html .theme-dark .empty-sub,
+html .empty-sub.theme-dark,
+html.theme-dark .empty-line,
+html .theme-dark .empty-line,
+html .empty-line.theme-dark,
+html.theme-dark .empty-hint,
+html .theme-dark .empty-hint,
+html .empty-hint.theme-dark,
+html.theme-dark .panel-hint,
+html .theme-dark .panel-hint,
+html .panel-hint.theme-dark,
+html.theme-dark .task-meta,
+html .theme-dark .task-meta,
+html .task-meta.theme-dark,
+html.theme-dark .task-foot-text,
+html .theme-dark .task-foot-text,
+html .task-foot-text.theme-dark,
+html.theme-dark .goal-progress-text,
+html .theme-dark .goal-progress-text,
+html .goal-progress-text.theme-dark,
+html.theme-dark .meta-part,
+html .theme-dark .meta-part,
+html .meta-part.theme-dark,
+html.theme-dark .desc,
+html .theme-dark .desc,
+html .desc.theme-dark,
+html.theme-dark .progress-text,
+html .theme-dark .progress-text,
+html .progress-text.theme-dark,
+html.theme-dark .sched-note,
+html .theme-dark .sched-note,
+html .sched-note.theme-dark,
+html.theme-dark .field-label,
+html .theme-dark .field-label,
+html .field-label.theme-dark,
+html.theme-dark .field-hint,
+html .theme-dark .field-hint,
+html .field-hint.theme-dark,
+html.theme-dark .danger-note,
+html .theme-dark .danger-note,
+html .danger-note.theme-dark,
+html.theme-dark .card-hint,
+html .theme-dark .card-hint,
+html .card-hint.theme-dark,
+html.theme-dark .sheet-item-sub,
+html .theme-dark .sheet-item-sub,
+html .sheet-item-sub.theme-dark,
+html.theme-dark .sheet-desc,
+html .theme-dark .sheet-desc,
+html .sheet-desc.theme-dark,
+html.theme-dark .sheet-back,
+html .theme-dark .sheet-back,
+html .sheet-back.theme-dark,
+html.theme-dark .sheet-loading-text,
+html .theme-dark .sheet-loading-text,
+html .sheet-loading-text.theme-dark,
+html.theme-dark .sheet-empty-text,
+html .theme-dark .sheet-empty-text,
+html .sheet-empty-text.theme-dark,
+html.theme-dark .cand-meta,
+html .theme-dark .cand-meta,
+html .cand-meta.theme-dark,
+html.theme-dark .s-note,
+html .theme-dark .s-note,
+html .s-note.theme-dark,
+html.theme-dark .u-reason,
+html .theme-dark .u-reason,
+html .u-reason.theme-dark,
+html.theme-dark .section-note,
+html .theme-dark .section-note,
+html .section-note.theme-dark,
+html.theme-dark .stats-date,
+html .theme-dark .stats-date,
+html .stats-date.theme-dark,
+html.theme-dark .book-entry-sub,
+html .theme-dark .book-entry-sub,
+html .book-entry-sub.theme-dark,
+html.theme-dark .book-entry-act,
+html .theme-dark .book-entry-act,
+html .book-entry-act.theme-dark,
+html.theme-dark .review-link-text,
+html .theme-dark .review-link-text,
+html .review-link-text.theme-dark,
+html.theme-dark .day-nums,
+html .theme-dark .day-nums,
+html .day-nums.theme-dark,
+html.theme-dark .chart-value,
+html .theme-dark .chart-value,
+html .chart-value.theme-dark,
+html.theme-dark .chart-label,
+html .theme-dark .chart-label,
+html .chart-label.theme-dark,
+html.theme-dark .dist-value,
+html .theme-dark .dist-value,
+html .dist-value.theme-dark,
+html.theme-dark .log-sub,
+html .theme-dark .log-sub,
+html .log-sub.theme-dark,
+html.theme-dark .resume-text,
+html .theme-dark .resume-text,
+html .resume-text.theme-dark,
+html.theme-dark .howto-line,
+html .theme-dark .howto-line,
+html .howto-line.theme-dark,
+html.theme-dark .timeline-title,
+html .theme-dark .timeline-title,
+html .timeline-title.theme-dark,
+html.theme-dark .g-lead-sub,
+html .theme-dark .g-lead-sub,
+html .g-lead-sub.theme-dark,
+html.theme-dark .g-line,
+html .theme-dark .g-line,
+html .g-line.theme-dark,
+html.theme-dark .cta-note,
+html .theme-dark .cta-note,
+html .cta-note.theme-dark,
+html.theme-dark .date-trigger--empty,
+html .theme-dark .date-trigger--empty,
+html .date-trigger--empty.theme-dark {
+  color: #8c8c86;
+}
+
+/* 弱化文字（划线 / 微光灰） */
+html.theme-dark .task-title--done,
+html .theme-dark .task-title--done,
+html .task-title--done.theme-dark,
+html.theme-dark .goal-card--done .goal-title,
+html .theme-dark .goal-card--done .goal-title,
+html .goal-card--done.theme-dark .goal-title,
+html.theme-dark .title--done,
+html .theme-dark .title--done,
+html .title--done.theme-dark,
+html.theme-dark .cand-title--dim,
+html .theme-dark .cand-title--dim,
+html .cand-title--dim.theme-dark {
+  color: #6a6a64;
+}
+
+/* 加深态（浅色里用纯黑强调，夜里用暖白强调） */
+html.theme-dark .meta-part--alert,
+html .theme-dark .meta-part--alert,
+html .meta-part--alert.theme-dark,
+html.theme-dark .tag--alert,
+html .theme-dark .tag--alert,
+html .tag--alert.theme-dark,
+html.theme-dark .day-nums--full,
+html .theme-dark .day-nums--full,
+html .day-nums--full.theme-dark,
+html.theme-dark .chart-label--today,
+html .theme-dark .chart-label--today,
+html .chart-label--today.theme-dark {
+  color: #EDEDE8;
+}
+
+/* V5.41：步骤复习开关（必须排在次文字之后，覆盖 field-label 的灰色） */
+html.theme-dark .field-label--switch,
+html .theme-dark .field-label--switch,
+html .field-label--switch.theme-dark {
+  color: #EDEDE8;
+}
+
+html.theme-dark .field--switch:active,
+html .theme-dark .field--switch:active,
+html .field--switch.theme-dark:active {
+  background-color: rgba(245, 213, 184, 0.16);
+}
+
+html.theme-dark .switch,
+html .theme-dark .switch,
+html .switch.theme-dark {
+  border-color: #3A3A36;
+}
+
+html.theme-dark .switch-knob,
+html .theme-dark .switch-knob,
+html .switch-knob.theme-dark {
+  background-color: #8c8c86;
+}
+
+html.theme-dark .switch--on,
+html .theme-dark .switch--on,
+html .switch--on.theme-dark {
+  border-color: #B87B5A;
+  background-color: rgba(184, 123, 90, 0.24);
+}
+
+html.theme-dark .switch--on .switch-knob,
+html .theme-dark .switch--on .switch-knob,
+html .switch--on.theme-dark .switch-knob {
+  background-color: #B87B5A;
+}
+
+/* 通用纯文字动作 */
+html.theme-dark .act,
+html .theme-dark .act,
+html .act.theme-dark {
+  color: #8c8c86;
+}
+
+/* V5.22 成就收藏集入口的按压反馈（夜里同一档暖色，压暗一档） */
+html.theme-dark .book-entry--pressed,
+html .theme-dark .book-entry--pressed,
+html .book-entry--pressed.theme-dark {
+  background-color: rgba(245, 213, 184, 0.12);
+}
+
+/* 强调动作（标记完成 / 编辑目标等）：夜里暖白——必须排在 .act 之后，避免被通用灰覆盖 */
+html.theme-dark .act.act--strong,
+html .theme-dark .act.act--strong,
+html .act.theme-dark.act--strong,
+html.theme-dark .review-link-act,
+html .theme-dark .review-link-act,
+html .review-link-act.theme-dark {
+  color: #EDEDE8;
+}
+
+/* 暖色按压（夜里为低亮暖光；按钮 / 选项连边框一起微暖） */
+html.theme-dark .act:active,
+html .theme-dark .act:active,
+html .act.theme-dark:active,
+html.theme-dark .review-link--pressed,
+html .theme-dark .review-link--pressed,
+html .review-link--pressed.theme-dark,
+html.theme-dark .sheet-back:active,
+html .theme-dark .sheet-back:active,
+html .sheet-back.theme-dark:active,
+html.theme-dark .task-main--pressed,
+html .theme-dark .task-main--pressed,
+html .task-main--pressed.theme-dark,
+html.theme-dark .task-foot--pressed,
+html .theme-dark .task-foot--pressed,
+html .task-foot--pressed.theme-dark,
+html.theme-dark .sheet-item--pressed,
+html .theme-dark .sheet-item--pressed,
+html .sheet-item--pressed.theme-dark,
+html.theme-dark .cand-row--pressed,
+html .theme-dark .cand-row--pressed,
+html .cand-row--pressed.theme-dark,
+html.theme-dark .goal-card--pressed,
+html .theme-dark .goal-card--pressed,
+html .goal-card--pressed.theme-dark,
+html.theme-dark .guide-entry--pressed,
+html .theme-dark .guide-entry--pressed,
+html .guide-entry--pressed.theme-dark {
+  background-color: rgba(245, 213, 184, 0.16);
+}
+
+html.theme-dark .cta-main--pressed,
+html .theme-dark .cta-main--pressed,
+html .cta-main--pressed.theme-dark,
+html.theme-dark .sheet-cta--pressed,
+html .theme-dark .sheet-cta--pressed,
+html .sheet-cta--pressed.theme-dark,
+html.theme-dark .step-btn--pressed,
+html .theme-dark .step-btn--pressed,
+html .step-btn--pressed.theme-dark,
+html.theme-dark .clear-btn--pressed,
+html .theme-dark .clear-btn--pressed,
+html .clear-btn--pressed.theme-dark,
+html.theme-dark .cta--pressed,
+html .theme-dark .cta--pressed,
+html .cta--pressed.theme-dark,
+html.theme-dark .opt--pressed,
+html .theme-dark .opt--pressed,
+html .opt--pressed.theme-dark,
+html.theme-dark .week-item--pressed,
+html .theme-dark .week-item--pressed,
+html .week-item--pressed.theme-dark,
+html.theme-dark .chip--pressed,
+html .theme-dark .chip--pressed,
+html .chip--pressed.theme-dark {
+  background-color: rgba(245, 213, 184, 0.16);
+  border-color: #b87b5a;
+}
+
+/* 大按钮 / 面板 CTA 按下的手绘边框同步暖橙（V5.8，延伸含目标页大按钮） */
+html.theme-dark .cta-main--pressed .hand-frame,
+html .theme-dark .cta-main--pressed .hand-frame,
+html .cta-main--pressed.theme-dark .hand-frame,
+html.theme-dark .sheet-cta--pressed .hand-frame,
+html .theme-dark .sheet-cta--pressed .hand-frame,
+html .sheet-cta--pressed.theme-dark .hand-frame,
+html.theme-dark .cta--pressed .hand-frame,
+html .theme-dark .cta--pressed .hand-frame,
+html .cta--pressed.theme-dark .hand-frame {
+  color: #b87b5a;
+}
+
+/* 描边矩形按钮（清空数据等） */
+html.theme-dark .cta,
+html .theme-dark .cta,
+html .cta.theme-dark,
+html.theme-dark .clear-btn,
+html .theme-dark .clear-btn,
+html .clear-btn.theme-dark {
+  border-color: #3a3a36;
+  background-color: transparent;
+  color: #EDEDE8;
+}
+
+/* 大按钮 / 面板 CTA：描边已换成手绘抖动框（V5.8），底色与文字照旧 */
+html.theme-dark .cta-main,
+html .theme-dark .cta-main,
+html .cta-main.theme-dark,
+html.theme-dark .sheet-cta,
+html .theme-dark .sheet-cta,
+html .sheet-cta.theme-dark {
+  background-color: transparent;
+  color: #EDEDE8;
+}
+
+html.theme-dark .cta-main .hand-frame,
+html .theme-dark .cta-main .hand-frame,
+html .cta-main.theme-dark .hand-frame,
+html.theme-dark .sheet-cta .hand-frame,
+html .theme-dark .sheet-cta .hand-frame,
+html .sheet-cta.theme-dark .hand-frame,
+html.theme-dark .cta .hand-frame,
+html .theme-dark .cta .hand-frame,
+html .cta.theme-dark .hand-frame {
+  color: #3a3a36;
+}
+
+/* 步进按钮（手动安排面板） */
+html.theme-dark .step-btn,
+html .theme-dark .step-btn,
+html .step-btn.theme-dark {
+  border-color: #3a3a36;
+  background-color: transparent;
+  color: #EDEDE8;
+}
+
+/* 分割线与描边 */
+html.theme-dark .divider,
+html .theme-dark .divider,
+html .divider.theme-dark {
+  background-color: #333330;
+}
+
+/* 手绘波浪虚线（V5.8）：行间 / 卡尾 / 面板分隔 */
+html.theme-dark .hand-line,
+html .theme-dark .hand-line,
+html .hand-line.theme-dark {
+  color: #333330;
+}
+
+/* 未选中 chips（暖灰描边） */
+html.theme-dark .card .opt,
+html .theme-dark .card .opt,
+html .card.theme-dark .opt,
+html.theme-dark .week-item,
+html .theme-dark .week-item,
+html .week-item.theme-dark,
+html.theme-dark .chip,
+html .theme-dark .chip,
+html .chip.theme-dark {
+  border-color: #333330;
+  background-color: transparent;
+  color: #8c8c86;
+}
+
+/* 选中态 chips（陶土暖橙；必须排在未选中规则之后） */
+html.theme-dark .card .opt--active,
+html .theme-dark .card .opt--active,
+html .card.theme-dark .opt--active,
+html.theme-dark .week-item--active,
+html .theme-dark .week-item--active,
+html .week-item--active.theme-dark,
+html.theme-dark .chip--active,
+html .theme-dark .chip--active,
+html .chip--active.theme-dark {
+  background-color: rgba(184, 123, 90, 0.16);
+  border-color: #b87b5a;
+  color: #efdecf;
+}
+
+/* 优先级标签（目标详情 · V5.21）：暖灰描边；按下暖橙 */
+html.theme-dark .prio-chip,
+html .theme-dark .prio-chip,
+html .prio-chip.theme-dark {
+  border-color: #333330;
+  color: #8c8c86;
+}
+
+html.theme-dark .prio-chip:active,
+html .theme-dark .prio-chip:active,
+html .prio-chip.theme-dark:active {
+  background-color: rgba(245, 213, 184, 0.16);
+  border-color: #b87b5a;
+}
+
+/* 备注：编辑页输入 = 一行字 + 1px 底线（field-input 与 uni 内层元素同步换色） */
+html.theme-dark .field-input,
+html .theme-dark .field-input,
+html .field-input.theme-dark {
+  color: #EDEDE8;
+  border-bottom-color: #3a3a36;
+}
+
+html.theme-dark .field-input .uni-input-wrapper,
+html .theme-dark .field-input .uni-input-wrapper,
+html .field-input.theme-dark .uni-input-wrapper {
+  color: #EDEDE8;
+}
+
+html.theme-dark .field-input .uni-input-input,
+html .theme-dark .field-input .uni-input-input,
+html .field-input.theme-dark .uni-input-input {
+  color: #EDEDE8;
+}
+
+html.theme-dark .field-input .uni-input-placeholder,
+html .theme-dark .field-input .uni-input-placeholder,
+html .field-input.theme-dark .uni-input-placeholder {
+  color: #6a6a64;
+}
+
+/* 详情页日期触发器（一行字 + 底线） */
+html.theme-dark .date-trigger,
+html .theme-dark .date-trigger,
+html .date-trigger.theme-dark {
+  color: #EDEDE8;
+  border-bottom-color: #3a3a36;
+}
+
+/* ==================== 3. 今日页 ==================== */
+
+/* 底部弹出面板 */
+html.theme-dark .sheet-mask,
+html .theme-dark .sheet-mask,
+html .sheet-mask.theme-dark {
+  background-color: rgba(12, 11, 9, 0.62);
+}
+
+html.theme-dark .sheet-panel,
+html .theme-dark .sheet-panel,
+html .sheet-panel.theme-dark {
+  background-color: #20201e;
+}
+
+html.theme-dark .sheet-bar,
+html .theme-dark .sheet-bar,
+html .sheet-bar.theme-dark {
+  background-color: #3a3a36;
+}
+
+/* 智能排期输入框（浅色是浅灰面，夜里是微亮暖面） */
+html.theme-dark .sheet-input,
+html .theme-dark .sheet-input,
+html .sheet-input.theme-dark {
+  background-color: rgba(237, 237, 232, 0.05);
+}
+
+html.theme-dark .sheet-input .uni-input-input,
+html .theme-dark .sheet-input .uni-input-input,
+html .sheet-input.theme-dark .uni-input-input {
+  color: #EDEDE8;
+}
+
+html.theme-dark .sheet-input .uni-input-placeholder,
+html .theme-dark .sheet-input .uni-input-placeholder,
+html .sheet-input.theme-dark .uni-input-placeholder,
+html.theme-dark .sheet-input .sheet-input-ph,
+html .theme-dark .sheet-input .sheet-input-ph,
+html .sheet-input.theme-dark .sheet-input-ph {
+  color: #6a6a64;
+}
+
+/* 旧安排便签（V5.43）：夜里的暖光，比截止提醒更亮 */
+html.theme-dark .leftover-block,
+html .theme-dark .leftover-block,
+html .leftover-block.theme-dark {
+  background-color: rgba(245, 213, 184, 0.08);
+}
+
+html.theme-dark .leftover-title,
+html .theme-dark .leftover-title,
+html .leftover-title.theme-dark {
+  color: #8c8c86;
+}
+
+html.theme-dark .leftover-text,
+html .theme-dark .leftover-text,
+html .leftover-text.theme-dark {
+  color: #EDEDE8;
+}
+
+/* 临近截止便签（V5.30e）：夜里的暖黄弱光 */
+html.theme-dark .due-block,
+html .theme-dark .due-block,
+html .due-block.theme-dark {
+  background-color: rgba(249, 231, 159, 0.06);
+}
+
+html.theme-dark .due-title,
+html .theme-dark .due-title,
+html .due-title.theme-dark,
+html.theme-dark .due-rest,
+html .theme-dark .due-rest,
+html .due-rest.theme-dark {
+  color: #8c8c86;
+}
+
+html.theme-dark .due-name,
+html .theme-dark .due-name,
+html .due-name.theme-dark,
+html.theme-dark .due-rest--urgent,
+html .theme-dark .due-rest--urgent,
+html .due-rest--urgent.theme-dark {
+  color: #EDEDE8;
+}
+
+html.theme-dark .due-row--pressed,
+html .theme-dark .due-row--pressed,
+html .due-row--pressed.theme-dark {
+  background-color: rgba(245, 213, 184, 0.16);
+}
+
+/* ==================== 4. 目标列表 ==================== */
+
+html.theme-dark .tag,
+html .theme-dark .tag,
+html .tag.theme-dark {
+  background-color: rgba(237, 237, 232, 0.06);
+  color: #8c8c86;
+}
+
+/* 固定在底部的主按钮容器：不透明，挡住滚动内容 */
+html.theme-dark .cta-wrap,
+html .theme-dark .cta-wrap,
+html .cta-wrap.theme-dark {
+  background-color: #1a1a18;
+}
+
+/* ==================== 5. 目标详情 ==================== */
+
+/* 纯文字选项（选中 = 暖白 + 1px 下划线） */
+html.theme-dark .field .opt,
+html .theme-dark .field .opt,
+html .field.theme-dark .opt {
+  color: #8c8c86;
+}
+
+html.theme-dark .field .opt:active,
+html .theme-dark .field .opt:active,
+html .field.theme-dark .opt:active {
+  background-color: rgba(245, 213, 184, 0.16);
+}
+
+html.theme-dark .field .opt--active,
+html .theme-dark .field .opt--active,
+html .field.theme-dark .opt--active {
+  color: #EDEDE8;
+  border-bottom-color: #EDEDE8;
+}
+
+/* ==================== 5.5 目标编辑页（V5.30 手账便签） ==================== */
+
+/* 大输入 = 48rpx 大字 + 1px 虚线（虚线在容器上） */
+html.theme-dark .title-block,
+html .theme-dark .title-block,
+html .title-block.theme-dark {
+  border-bottom-color: #3a3a36;
+}
+
+html.theme-dark .title-input,
+html .theme-dark .title-input,
+html .title-input.theme-dark,
+html.theme-dark .title-input .uni-input-wrapper,
+html .theme-dark .title-input .uni-input-wrapper,
+html .title-input.theme-dark .uni-input-wrapper,
+html.theme-dark .title-input .uni-input-input,
+html .theme-dark .title-input .uni-input-input,
+html .title-input.theme-dark .uni-input-input {
+  color: #EDEDE8;
+}
+
+html.theme-dark .title-input .uni-input-placeholder,
+html .theme-dark .title-input .uni-input-placeholder,
+html .title-input.theme-dark .uni-input-placeholder {
+  color: #6a6a64;
+}
+
+/* 光标（caret）：夜里提亮——黑竖线落在深色底上会看不见
+ * （全站输入框统一，浅色值在 styles/common.scss） */
+html.theme-dark .uni-input-input,
+html .theme-dark .uni-input-input,
+html .uni-input-input.theme-dark {
+  caret-color: #EDEDE8;
+}
+
+/* 属性胶囊：未设置 = 微亮暖面；已设置 / 展开态 = 陶土暖橙；按压排最后 */
+html.theme-dark .cap,
+html .theme-dark .cap,
+html .cap.theme-dark {
+  background-color: rgba(237, 237, 232, 0.06);
+  color: #8c8c86;
+}
+
+html.theme-dark .cap.cap--set,
+html .theme-dark .cap.cap--set,
+html .cap.theme-dark.cap--set,
+html.theme-dark .cap.cap--open,
+html .theme-dark .cap.cap--open,
+html .cap.theme-dark.cap--open {
+  background-color: rgba(184, 123, 90, 0.16);
+  color: #efdecf;
+}
+
+html.theme-dark .cap.cap--pressed,
+html .theme-dark .cap.cap--pressed,
+html .cap.theme-dark.cap--pressed {
+  background-color: rgba(245, 213, 184, 0.16);
+}
+
+/* 面板选项（截止快捷 / 优先级 / 每日时长 / 分类）：未选暖面、选中陶土暖橙、按压排最后 */
+html.theme-dark .pill,
+html .theme-dark .pill,
+html .pill.theme-dark {
+  background-color: rgba(237, 237, 232, 0.06);
+  color: #8c8c86;
+}
+
+html.theme-dark .pill--active,
+html .theme-dark .pill--active,
+html .pill--active.theme-dark {
+  background-color: rgba(184, 123, 90, 0.16);
+  color: #efdecf;
+}
+
+html.theme-dark .pill--pressed,
+html .theme-dark .pill--pressed,
+html .pill--pressed.theme-dark {
+  background-color: rgba(245, 213, 184, 0.16);
+}
+
+/* 编辑页·自定义每日分钟（行内输入） */
+html.theme-dark .daily-add,
+html .theme-dark .daily-add,
+html .daily-add.theme-dark {
+  border-bottom-color: #3a3a36;
+}
+
+html.theme-dark .daily-input .uni-input-wrapper,
+html .theme-dark .daily-input .uni-input-wrapper,
+html .daily-input.theme-dark .uni-input-wrapper,
+html.theme-dark .daily-input .uni-input-input,
+html .theme-dark .daily-input .uni-input-input,
+html .daily-input.theme-dark .uni-input-input {
+  color: #EDEDE8;
+}
+
+html.theme-dark .daily-input .uni-input-placeholder,
+html .theme-dark .daily-input .uni-input-placeholder,
+html .daily-input.theme-dark .uni-input-placeholder {
+  color: #6a6a64;
+}
+
+html.theme-dark .daily-unit,
+html .theme-dark .daily-unit,
+html .daily-unit.theme-dark,
+html.theme-dark .daily-ok,
+html .theme-dark .daily-ok,
+html .daily-ok.theme-dark {
+  color: #8c8c86;
+}
+
+html.theme-dark .daily-ok:active,
+html .theme-dark .daily-ok:active,
+html .daily-ok.theme-dark:active {
+  background-color: rgba(245, 213, 184, 0.16);
+}
+
+html.theme-dark .daily-ok--on,
+html .theme-dark .daily-ok--on,
+html .daily-ok--on.theme-dark {
+  color: #EDEDE8;
+}
+
+/* 编辑页·学习步骤区（新建时可选，V5.38）：标题 / 说明 / 步骤数 / 划掉动作 */
+html.theme-dark .steps-title,
+html .theme-dark .steps-title,
+html .steps-title.theme-dark {
+  color: #8c8c86;
+}
+
+html.theme-dark .steps-note,
+html .theme-dark .steps-note,
+html .steps-note.theme-dark {
+  color: #5a5a54;
+}
+
+html.theme-dark .step-name,
+html .theme-dark .step-name,
+html .step-name.theme-dark {
+  color: #EDEDE8;
+}
+
+html.theme-dark .step-act,
+html .theme-dark .step-act,
+html .step-act.theme-dark {
+  color: #8c8c86;
+}
+
+html.theme-dark .step-act:active,
+html .theme-dark .step-act:active,
+html .step-act.theme-dark:active,
+html.theme-dark .step-add-btn:active,
+html .theme-dark .step-add-btn:active,
+html .step-add-btn.theme-dark:active {
+  background-color: rgba(245, 213, 184, 0.16);
+}
+
+/* 行首墨点：夜里提亮一档 */
+html.theme-dark .step-dot,
+html .theme-dark .step-dot,
+html .step-dot.theme-dark {
+  background-color: rgba(237, 237, 232, 0.4);
+}
+
+/* 添加一行：输入 + 「加入」 */
+html.theme-dark .step-add,
+html .theme-dark .step-add,
+html .step-add.theme-dark {
+  border-bottom-color: #3a3a36;
+}
+
+html.theme-dark .step-input .uni-input-wrapper,
+html .theme-dark .step-input .uni-input-wrapper,
+html .step-input.theme-dark .uni-input-wrapper,
+html.theme-dark .step-input .uni-input-input,
+html .theme-dark .step-input .uni-input-input,
+html .step-input.theme-dark .uni-input-input {
+  color: #EDEDE8;
+}
+
+html.theme-dark .step-input .uni-input-placeholder,
+html .theme-dark .step-input .uni-input-placeholder,
+html .step-input.theme-dark .uni-input-placeholder {
+  color: #6a6a64;
+}
+
+html.theme-dark .step-add-btn,
+html .theme-dark .step-add-btn,
+html .step-add-btn.theme-dark {
+  color: #6a6a64;
+}
+
+html.theme-dark .step-add-btn--on,
+html .theme-dark .step-add-btn--on,
+html .step-add-btn--on.theme-dark {
+  color: #EDEDE8;
+}
+
+/* ==================== 6. 统计页 ==================== */
+
+/* 柱状图：暖灰柱 + 今天亮陶土暖橙（全页唯一暖光点）
+   夜里底色是 #1A1A18，柱身若只用 #55554F 几乎看不见 —— 提到 #8C8C86 */
+html.theme-dark .chart,
+html .theme-dark .chart,
+html .chart.theme-dark {
+  border-bottom-color: #4a4a44;
+}
+
+html.theme-dark .chart-bar,
+html .theme-dark .chart-bar,
+html .chart-bar.theme-dark {
+  background-color: #8c8c86;
+}
+
+html.theme-dark .chart-bar--today,
+html .theme-dark .chart-bar--today,
+html .chart-bar--today.theme-dark {
+  background-color: #b87b5a;
+}
+
+/* ==================== 7. 我的页 ==================== */
+
+/* 转轮文字：上下为暖灰（透明度由行内样式控制），中选为暖白 */
+html.theme-dark .wheel-item-text,
+html .theme-dark .wheel-item-text,
+html .wheel-item-text.theme-dark {
+  color: #8c8c86;
+}
+
+html.theme-dark .wheel-item-text--sel,
+html .theme-dark .wheel-item-text--sel,
+html .wheel-item-text--sel.theme-dark {
+  color: #EDEDE8;
+}
+
+/* picker-view 的选中框线（indicator 的行内浅灰线 → 暖灰线） */
+html.theme-dark .uni-picker-view-indicator,
+html .theme-dark .uni-picker-view-indicator,
+html .uni-picker-view-indicator.theme-dark {
+  border-color: #3a3a36 !important;
+}
+
+/* picker-view 的上下白雾渐变 → 直接去掉（与浅色一致），
+   远近只由行内透明度表达，避免相邻值被雾洗掉。 */
+html.theme-dark .uni-picker-view-mask,
+html .theme-dark .uni-picker-view-mask,
+html .uni-picker-view-mask.theme-dark {
+  background-image: none !important;
+}
+
+/* ==================== 7.5 日期弹层（uni-ui 日历） ==================== */
+
+/* 弹层容器：暖面 + 暖灰描边（原来的白底 #fff + #EBEEF5） */
+html.theme-dark .uni-date-single--x,
+html .theme-dark .uni-date-single--x,
+html .uni-date-single--x.theme-dark {
+  background-color: #20201e;
+  border-color: #333330;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.55);
+}
+
+html.theme-dark .uni-calendar__content,
+html .theme-dark .uni-calendar__content,
+html .uni-calendar__content.theme-dark {
+  background-color: #20201e;
+}
+
+/* 月份导航：描边换暖灰、箭头换暖灰、月份文字换暖白 */
+html.theme-dark .uni-calendar__header,
+html .theme-dark .uni-calendar__header,
+html .uni-calendar__header.theme-dark {
+  border-bottom-color: #333330;
+}
+
+html.theme-dark .uni-calendar__header-text,
+html .theme-dark .uni-calendar__header-text,
+html .uni-calendar__header-text.theme-dark {
+  color: #EDEDE8;
+}
+
+html.theme-dark .uni-calendar__header-btn,
+html .theme-dark .uni-calendar__header-btn,
+html .uni-calendar__header-btn.theme-dark {
+  border-left-color: #8c8c86;
+  border-top-color: #8c8c86;
+}
+
+html.theme-dark .uni-calendar__backtoday,
+html .theme-dark .uni-calendar__backtoday,
+html .uni-calendar__backtoday.theme-dark {
+  color: #EDEDE8;
+  background-color: rgba(237, 237, 232, 0.07);
+}
+
+/* 星期行与日期格 */
+html.theme-dark .uni-calendar__weeks-day,
+html .theme-dark .uni-calendar__weeks-day,
+html .uni-calendar__weeks-day.theme-dark {
+  border-bottom-color: #333330;
+}
+
+html.theme-dark .uni-calendar-item--disable .uni-calendar-item__weeks-box-text-disable,
+html .theme-dark .uni-calendar-item--disable .uni-calendar-item__weeks-box-text-disable,
+html .uni-calendar-item--disable.theme-dark .uni-calendar-item__weeks-box-text-disable {
+  color: #55554f;
+}
+
+html.theme-dark .uni-calendar-item--today,
+html .theme-dark .uni-calendar-item--today,
+html .uni-calendar-item--today.theme-dark {
+  background-color: rgba(184, 123, 90, 0.24);
+}
+
+/* 选中日：淡暖光 → 陶土暖橙圆（内圈描边跟弹层底色一致） */
+html.theme-dark .uni-calendar-item__weeks-box .uni-calendar-item--checked,
+html .theme-dark .uni-calendar-item__weeks-box .uni-calendar-item--checked,
+html .uni-calendar-item__weeks-box.theme-dark .uni-calendar-item--checked {
+  background-color: #b87b5a;
+  border-color: #20201e;
+}
+
+html.theme-dark .uni-calendar-item--checked .uni-calendar-item--checked-text,
+html .theme-dark .uni-calendar-item--checked .uni-calendar-item--checked-text,
+html .uni-calendar-item--checked.theme-dark .uni-calendar-item--checked-text {
+  color: #1a1a18;
+}
+
+/* ==================== 8. 专注页 ==================== */
+
+html.theme-dark .focus,
+html .theme-dark .focus,
+html .focus.theme-dark {
+  background-color: #1a1a18;
+  /* 专注页也铺一层星座底图：学习发生在微光星幕下 */
+  background-image: url('/static/starmap.svg?v=52');
+  background-size: cover;
+  background-position: center;
+  /* 弧线（走过的时间）= 陶土暖橙：暗室里的一圈暖光；虚线轨道保持暗线 */
+  --focus-ink: #b87b5a;
+}
+
+html.theme-dark .ring-track,
+html .theme-dark .ring-track,
+html .ring-track.theme-dark {
+  border-color: #3a3a36;
+}
+
+html.theme-dark .ring-hole,
+html .theme-dark .ring-hole,
+html .ring-hole.theme-dark {
+  background-color: #1a1a18;
+  /* 环心一圈极淡的暖月光：让词像坐在一盏灯下 */
+  background-image: radial-gradient(circle at center, rgba(237, 235, 228, 0.05), rgba(237, 235, 228, 0) 62%);
+}
+
+html.theme-dark .word,
+html .theme-dark .word,
+html .word.theme-dark {
+  color: #EDEDE8;
+}
+
+/* armed（长按满 1 秒）：词转暖月白 */
+html.theme-dark .word-hit--armed .word,
+html .theme-dark .word-hit--armed .word,
+html .word-hit--armed.theme-dark .word {
+  color: #e3c49a;
+}
+
+/* 夜航星幕：浅色下藏起，暗色中显形 */
+html.theme-dark .focus-sky,
+html .theme-dark .focus-sky,
+html .focus-sky.theme-dark {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  pointer-events: none;
+  transition: opacity 600ms ease;
+}
+
+/* 驻足时：整片星空的时间一起停住并变暗 */
+html.theme-dark .focus--paused .focus-sky,
+html .theme-dark .focus--paused .focus-sky,
+html .focus--paused.theme-dark .focus-sky {
+  opacity: 0.45;
+}
+
+/* 散星：极小的暖白点，各自以不同节奏明灭 */
+html.theme-dark .sky-star,
+html .theme-dark .sky-star,
+html .sky-star.theme-dark {
+  position: absolute;
+  border-radius: 50%;
+  background-color: #d8d8ce;
+  opacity: 0.1;
+  animation-name: spa-twinkle;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+html.theme-dark .sky-star--bright,
+html .theme-dark .sky-star--bright,
+html .sky-star--bright.theme-dark {
+  box-shadow: 0 0 8rpx rgba(216, 216, 206, 0.7);
+}
+
+/* 流星：每轮只闪一瞬的斜线，长延迟偶遇一次 */
+html.theme-dark .sky-meteor,
+html .theme-dark .sky-meteor,
+html .sky-meteor.theme-dark {
+  position: absolute;
+  width: 140rpx;
+  height: 2rpx;
+  background-image: linear-gradient(90deg, rgba(237, 237, 232, 0.9), rgba(237, 237, 232, 0));
+  transform: rotate(-20deg);
+  opacity: 0;
+  animation: spa-meteor 27s linear infinite;
+}
+
+html.theme-dark .sky-meteor--a,
+html .theme-dark .sky-meteor--a,
+html .sky-meteor--a.theme-dark {
+  top: 14%;
+  left: 62%;
+  animation-delay: 6s;
+}
+
+html.theme-dark .sky-meteor--b,
+html .theme-dark .sky-meteor--b,
+html .sky-meteor--b.theme-dark {
+  top: 36%;
+  left: 30%;
+  width: 96rpx;
+  animation-delay: 18s;
+  animation-duration: 43s;
+}
+
+/* 驻足时：星幕与流星一起定格 */
+html.theme-dark .focus--paused .sky-star,
+html .theme-dark .focus--paused .sky-star,
+html .focus--paused.theme-dark .sky-star,
+html.theme-dark .focus--paused .sky-meteor,
+html .theme-dark .focus--paused .sky-meteor,
+html .focus--paused.theme-dark .sky-meteor {
+  animation-play-state: paused;
+}
+
+/* 圆弧外沿的柔光（只在暗夜）：一圈陶土暖光 */
+html.theme-dark .ring-arc,
+html .theme-dark .ring-arc,
+html .ring-arc.theme-dark {
+  filter: drop-shadow(0 0 12rpx rgba(184, 123, 90, 0.28));
+}
+
+html.theme-dark .context,
+html .theme-dark .context,
+html .context.theme-dark {
+  color: #6a6a64;
+}
+
+html.theme-dark .word-hint,
+html .theme-dark .word-hint,
+html .word-hint.theme-dark {
+  color: #605f5a;
+}
+
+html.theme-dark .bless,
+html .theme-dark .bless,
+html .bless.theme-dark {
+  color: #c99b7e;
+}
+
+@keyframes spa-twinkle {
+  from {
+    opacity: 0.08;
+  }
+
+  to {
+    opacity: 0.75;
+  }
+}
+
+@keyframes spa-meteor {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) rotate(-20deg);
+  }
+
+  1.2% {
+    opacity: 0.95;
+  }
+
+  5.5% {
+    opacity: 0;
+    transform: translate3d(-40vw, 14.5vw, 0) rotate(-20deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(-40vw, 14.5vw, 0) rotate(-20deg);
+  }
+}
+
+/* 系统开启「减弱动态效果」：星幕静止，只留微光 */
+@media (prefers-reduced-motion: reduce) {
+  html.theme-dark .sky-star,
+html .theme-dark .sky-star,
+html .sky-star.theme-dark,
+html.theme-dark .sky-meteor,
+html .theme-dark .sky-meteor,
+html .sky-meteor.theme-dark {
+    animation: none;
+  }
+
+  html.theme-dark .sky-star,
+html .theme-dark .sky-star,
+html .sky-star.theme-dark {
+    opacity: 0.4;
+  }
+}
+
+/* 注：uni-ui 日历的深色覆盖统一在上方「7.5 日期弹层」段，此处不再设置猜测规则，
+   避免同优先级规则因书写次序压掉精确覆盖 */
+
+/* ==================== V5.46：调整排期（手动增删） ==================== */
+
+html.theme-dark .plan-title,
+html .theme-dark .plan-title,
+html .plan-title.theme-dark,
+html.theme-dark .date-opt--active,
+html .theme-dark .date-opt--active,
+html .date-opt--active.theme-dark {
+  color: #EDEDE8;
+}
+
+html.theme-dark .plan-meta,
+html .theme-dark .plan-meta,
+html .plan-meta.theme-dark,
+html.theme-dark .day-count,
+html .theme-dark .day-count,
+html .day-count.theme-dark,
+html.theme-dark .date-opt,
+html .theme-dark .date-opt,
+html .date-opt.theme-dark {
+  color: #8c8c86;
+}
+
+html.theme-dark .plan-row,
+html .theme-dark .plan-row,
+html .plan-row.theme-dark,
+html.theme-dark .section-head,
+html .theme-dark .section-head,
+html .section-head.theme-dark,
+html.theme-dark .date-opts,
+html .theme-dark .date-opts,
+html .date-opts.theme-dark {
+  border-bottom-color: #3a3a36;
+}
+
+html.theme-dark .date-opt--active,
+html .theme-dark .date-opt--active,
+html .date-opt--active.theme-dark {
+  border-bottom-color: #EDEDE8;
+}
+
+html.theme-dark .add-cta-wrap,
+html .theme-dark .add-cta-wrap,
+html .add-cta-wrap.theme-dark {
+  background-color: #1a1a18;
+  border-top-color: #3a3a36;
+}
+
+html.theme-dark .add-cta,
+html .theme-dark .add-cta,
+html .add-cta.theme-dark {
+  background-color: transparent;
+  color: #EDEDE8;
+}
+
+html.theme-dark .add-cta .hand-frame,
+html .theme-dark .add-cta .hand-frame,
+html .add-cta.theme-dark .hand-frame {
+  color: #3a3a36;
+}
+
+html.theme-dark .add-cta--pressed,
+html .theme-dark .add-cta--pressed,
+html .add-cta--pressed.theme-dark {
+  background-color: rgba(245, 213, 184, 0.16);
+}
+
+html.theme-dark .add-cta--pressed .hand-frame,
+html .theme-dark .add-cta--pressed .hand-frame,
+html .add-cta--pressed.theme-dark .hand-frame {
+  color: #b87b5a;
+}
+
+html.theme-dark .add-cta--off,
+html .theme-dark .add-cta--off,
+html .add-cta--off.theme-dark {
+  color: #8c8c86;
+}
+
+/* ==================== V5.47：调整排期（底部入口 + 挑选抽屉） ==================== */
+
+html.theme-dark .day-act,
+html .theme-dark .day-act,
+html .day-act.theme-dark {
+  color: #8c8c86;
+}
+
+html.theme-dark .day-head--pressed,
+html .theme-dark .day-head--pressed,
+html .day-head--pressed.theme-dark {
+  background-color: rgba(245, 213, 184, 0.16);
+}
+
+html.theme-dark .cta-wrap,
+html .theme-dark .cta-wrap,
+html .cta-wrap.theme-dark {
+  background-color: #1a1a18;
+}
+
+html.theme-dark .cta,
+html .theme-dark .cta,
+html .cta.theme-dark {
+  background-color: transparent;
+  color: #EDEDE8;
+}
+
+html.theme-dark .cta .hand-frame,
+html .theme-dark .cta .hand-frame,
+html .cta.theme-dark .hand-frame {
+  color: #3a3a36;
+}
+
+html.theme-dark .cta--pressed,
+html .theme-dark .cta--pressed,
+html .cta--pressed.theme-dark {
+  background-color: rgba(245, 213, 184, 0.16);
+}
+
+html.theme-dark .cta--pressed .hand-frame,
+html .theme-dark .cta--pressed .hand-frame,
+html .cta--pressed.theme-dark .hand-frame {
+  color: #b87b5a;
+}
+
+html.theme-dark .sheet-cancel,
+html .theme-dark .sheet-cancel,
+html .sheet-cancel.theme-dark {
+  color: #8c8c86;
+}
+
+html.theme-dark .sheet-cta--off,
+html .theme-dark .sheet-cta--off,
+html .sheet-cta--off.theme-dark {
+  color: #8c8c86;
+}
+
+/* ==================== V5.52：手动挑选按目标分组 ==================== */
+
+html.theme-dark .cand-group-title,
+html .theme-dark .cand-group-title,
+html .cand-group-title.theme-dark {
+  color: #EDEDE8;
+}
+
+html.theme-dark .cand-group-count,
+html .theme-dark .cand-group-count,
+html .cand-group-count.theme-dark {
+  color: #8c8c86;
+}
+
+html.theme-dark .cand-group-head,
+html .theme-dark .cand-group-head,
+html .cand-group-head.theme-dark {
+  border-bottom-color: #3a3a36;
+}
+
+/* 自动排期超出额度提醒 */
+html.theme-dark .sheet-note--alert,
+html .theme-dark .sheet-note--alert,
+html .sheet-note--alert.theme-dark {
+  color: #EDEDE8;
+}
+
+/* 专注页背景音乐选项 */
+html.theme-dark .music-label,
+html .theme-dark .music-label,
+html .music-label.theme-dark,
+html.theme-dark .music-option,
+html .theme-dark .music-option,
+html .music-option.theme-dark {
+  color: #6a6a64;
+}
+
+html.theme-dark .music-option--active,
+html .theme-dark .music-option--active,
+html .music-option--active.theme-dark {
+  color: #EDEDE8;
+}
+
+/* 手动挑选：独立目标 / 目标下的步骤 分区标题 */
+html.theme-dark .cand-section-title,
+html .theme-dark .cand-section-title,
+html .cand-section-title.theme-dark {
+  color: #8c8c86;
+}
+
+/* ==================== 启动封面「溯星」 ==================== */
+
+html.theme-dark .splash,
+html .theme-dark .splash,
+html .splash.theme-dark {
+  background-color: #1a1a18;
+
+  /* 暗底上把插画的线提亮一点，不然远看只剩一团灰 */
+  --doodle-stroke: #b4b4ac;
+  --doodle-blue: #6e93ae;
+  --doodle-yellow: #e3c270;
+}
+
+html.theme-dark .splash .wordmark,
+html .theme-dark .splash .wordmark,
+html .splash.theme-dark .wordmark {
+  color: #EDEDE8;
+}
+
+html.theme-dark .splash .quote-block,
+html .theme-dark .splash .quote-block,
+html .splash.theme-dark .quote-block {
+  color: #94948c;
+}
+
+html.theme-dark .splash .hint,
+html .theme-dark .splash .hint,
+html .splash.theme-dark .hint {
+  color: #8c8c86;
+}
+
+html.theme-dark .splash .sound,
+html .theme-dark .splash .sound,
+html .splash.theme-dark .sound {
+  color: #8f8f88;
+}
+
+/* ==================== App 端补丁（V5.70 · 真机） ====================
+   App 的逻辑层跑在独立 JS 引擎里，拿不到 html / body / page：
+   - 主题类改挂在每个页面的根 view 上（utils/theme.ts 的 darkActive），
+     上面扩写出来的 `html .theme-dark X` / `html .X.theme-dark` 就是为这条路准备的；
+   - 底色与星座底图原先挂在 body 上、插画配色挂在 page 上，App 里都命中不了，
+     这里各补一份到页面根节点；
+   - 页面根节点自己是 scoped 的 `.today[data-v-x]`（0,2,0），
+     所以带上 html（0,2,1）才压得住。 */
+
+html .theme-dark {
+  --doodle-stroke: #8C8C86;
+  --doodle-pine: #87A090;
+  --doodle-green: #5A8B82;
+  --doodle-blue: #5A7A9A;
+  --doodle-pink: #A87070;
+  --doodle-yellow: #9A8B5A;
+  --doodle-purple: #7A6A8A;
+  --doodle-paper: #20201E;
+  --book-board: #20201E;
+  --book-edge: #33312C;
+  --book-paper: #1A1A18;
+  --book-stage: #1A1A18;
+  --book-seam: #5E9A8C;
+  --book-mint: #7FB3A6;
+  --book-mint-ink: #8FC7BA;
+  --book-hairline: rgba(255, 255, 255, 0.08);
+  --book-grain: rgba(255, 255, 255, 0.018);
+  --book-ink: #8C8C86;
+  --book-title: #EDEDE8;
+  --book-mute: #8C8C86;
+  --book-folio: #6F6B64;
+}
+
+html .theme-dark.today,
+html .theme-dark.goals,
+html .theme-dark.detail,
+html .theme-dark.edit,
+html .theme-dark.schedule,
+html .theme-dark.stats,
+html .theme-dark.mine,
+html .theme-dark.guide {
+  background-color: #1a1a18;
+  background-image: url('/static/starmap.svg?v=52');
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #EDEDE8;
+}
+

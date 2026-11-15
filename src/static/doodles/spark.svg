@@ -1,0 +1,29 @@
+<svg viewBox="0 0 200 200" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="crayon-texture-spark">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.4" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </defs>
+  <g filter="url(#crayon-texture-spark)" stroke-linecap="round" stroke-linejoin="round">
+    <!-- 四角小亮星（V5.8 修订：铺满视窗 + 描边，40rpx 下仍清晰）：四角长短不一的一笔星 -->
+    <path
+      d="M 97 16 Q 106 82 180 92 Q 112 108 105 185 Q 92 114 17 103 Q 86 84 97 16 Z"
+      fill="var(--doodle-yellow, #F9E79F)"
+      fill-opacity="0.85"
+    />
+    <!-- 描边（深灰 / 暗色暖灰）：左上角收笔处故意留一道小缺口，像小孩没画满 -->
+    <path
+      d="M 122.5 68 Q 143 87 180 92 Q 112 108 105 185 Q 92 114 17 103 Q 86 84 97 16 Q 100.5 41 113 58"
+      fill="none"
+      stroke="var(--doodle-stroke, #3A3A3A)"
+      stroke-width="5.5"
+    />
+    <!-- 随手点上去的一点小粉斑 -->
+    <path
+      d="M 141 42 C 143 33, 151 28.5, 158 31 C 165 33.5, 166.5 42.5, 159.5 46.5 C 153 50.5, 144 49, 141 42 Z"
+      fill="var(--doodle-pink, #F5B7B1)"
+      fill-opacity="0.8"
+    />
+  </g>
+</svg>

@@ -1,0 +1,23 @@
+<svg viewBox="0 0 200 200" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="crayon-texture-notebook">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </defs>
+  <g filter="url(#crayon-texture-notebook)" stroke="var(--doodle-stroke, #3A3A3A)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <!-- 空白手账：第一笔还没落下（统计页空状态专用） -->
+    <path d="M 56 58 C 80 52, 126 54, 148 60 C 151 82, 149 122, 145 148 C 124 154, 82 151, 58 145 C 55 120, 53 84, 56 58 Z" fill="var(--doodle-blue, #A9CCE3)" fill-opacity="0.22" />
+    <path d="M 67 67 C 88 63, 121 64, 138 68 C 140 86, 139 119, 136 141 C 117 145, 88 143, 68 139 C 66 116, 65 89, 67 67 Z" fill="var(--doodle-yellow, #F9E79F)" fill-opacity="0.18" />
+    <path d="M 78 64 C 76 88, 76 118, 78 143" fill="none" stroke-opacity="0.5" />
+    <path d="M 89 91 C 102 89, 119 89, 131 91" fill="none" stroke-opacity="0.35" stroke-width="2" />
+    <path d="M 89 109 C 102 107, 119 107, 131 109" fill="none" stroke-opacity="0.35" stroke-width="2" />
+    <path d="M 89 127 C 100 125, 113 125, 122 127" fill="none" stroke-opacity="0.35" stroke-width="2" />
+    <!-- 斜放在本子上的笔 -->
+    <path d="M 108 128 L 144 92 C 147 89, 152 94, 149 97 L 113 133 Z" fill="var(--doodle-pink, #F5B7B1)" fill-opacity="0.9" />
+    <path d="M 108 128 L 101 136 L 112 133 Z" fill="var(--doodle-pine, #2C4A3B)" />
+    <path d="M 141 95 L 147 101" fill="none" stroke-width="2" />
+    <!-- 地面：一条轻轻的手绘线，让本子坐在纸上 -->
+    <path d="M 52 161 C 76 157, 110 162, 148 158" fill="none" stroke-opacity="0.6" />
+  </g>
+</svg>

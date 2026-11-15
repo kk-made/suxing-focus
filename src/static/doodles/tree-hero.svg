@@ -1,0 +1,38 @@
+<svg viewBox="0 0 640 200" width="640" height="200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="crayon-texture-tree-hero">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </defs>
+  <g filter="url(#crayon-texture-tree-hero)" stroke="var(--doodle-stroke, #3A3A3A)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <!-- 大树：今日页主插画（大数字下方，60vw 居中）—— V5.8.4 恢复最初上线画法：
+         右树冠薄荷绿 + 左树冠樱花粉两块色面，深墨绿内线勾出树冠层次，其余墨线随 --doodle-stroke -->
+    <!-- 地平线（左右两段，树居中） -->
+    <path d="M 84 180 C 118 176.5, 156 181, 200 178 C 228 176, 250 179.5, 276 177.5" fill="none" />
+    <path d="M 294 178 C 322 176, 354 180.5, 390 177.5 C 424 175, 460 179.5, 500 177 C 524 176, 546 178.5, 562 176.5" fill="none" />
+    <!-- 树干双线、两侧小枝丫与枝节（墨线） -->
+    <path d="M 299 176 C 297.5 172, 296 169.5, 295 166.5" fill="none" />
+    <path d="M 303 176.5 C 302.5 173.5, 301.5 171.5, 300.5 169" fill="none" />
+    <path d="M 341 177 C 342.5 173, 344 170.5, 345 167.5" fill="none" />
+    <path d="M 337 177.5 C 337.5 174.5, 338.5 172.5, 339.5 170.5" fill="none" />
+    <path d="M 310 176 C 311.5 164, 307 154, 310.5 142 C 313 133, 309.5 128, 312.5 124" fill="none" />
+    <path d="M 330 177 C 328 165, 332 153, 328.5 142 C 326 132, 330 127, 327 122" fill="none" />
+    <path d="M 310.5 148 C 306 145, 302.5 142, 299.5 138" fill="none" />
+    <path d="M 328.5 142 C 334 138.5, 340 134, 344.5 129" fill="none" />
+    <path d="M 310 176 C 306.5 177.5, 303.5 178, 301 179" fill="none" />
+    <path d="M 330 177 C 333.5 178.5, 336.5 179, 339 180" fill="none" />
+    <!-- 树冠色面：右 · 薄荷绿 / 左 · 樱花粉 -->
+    <path d="M 288 122 C 276 118, 272 106, 276 94 C 272 82, 282 70, 296 66 C 300 54, 314 48, 328 52 C 342 56, 350 66, 352 78 C 366 76, 380 84, 384 98 C 388 112, 380 122, 366 126 C 362 134, 348 140, 334 138 C 320 136, 306 130, 298 126 C 293 126, 290 124, 288 122 Z" fill="var(--doodle-green, #A2D9CE)" fill-opacity="0.7" stroke="none" />
+    <path d="M 244 86 C 232 78, 229 64, 237 53 C 243 44, 254 40, 264 42 C 268 30, 281 24, 294 28 C 305 31.5, 312 40, 312 51 C 324 51, 332 61, 332 72 C 332 83, 325 90, 315 92 C 311 100, 299 104, 288 102 C 275 100, 253 94, 244 86 Z" fill="var(--doodle-pink, #F5B7B1)" fill-opacity="0.7" stroke="none" />
+    <!-- 树冠内线（深墨绿，勾出枝冠层次） -->
+    <path d="M 280 98 C 276 86, 283 72, 297 67 C 306 63.5, 317 58, 328 57" fill="none" stroke="var(--doodle-pine, #2C4A3B)" />
+    <path d="M 352 79 C 366 78, 380 86, 384 99 C 387 109, 382 119, 372 124" fill="none" stroke="var(--doodle-pine, #2C4A3B)" />
+    <path d="M 362 128 C 354 134, 341 138, 330 137" fill="none" stroke="var(--doodle-pine, #2C4A3B)" />
+    <path d="M 320 135 C 307 131, 294 127, 286 120" fill="none" stroke="var(--doodle-pine, #2C4A3B)" />
+    <path d="M 240 61 C 235 50, 243 41, 255 40 C 264 39.5, 272 42, 280 47" fill="none" stroke="var(--doodle-pine, #2C4A3B)" />
+    <path d="M 286 30 C 296 25.5, 306 31, 311 41" fill="none" stroke="var(--doodle-pine, #2C4A3B)" />
+    <path d="M 331 57 C 336 64, 336 76, 330 85" fill="none" stroke="var(--doodle-pine, #2C4A3B)" />
+    <path d="M 318 95 C 306 100, 291 101, 278 97 C 266 93.5, 257 89, 249 83" fill="none" stroke="var(--doodle-pine, #2C4A3B)" />
+  </g>
+</svg>

@@ -1,0 +1,20 @@
+<svg viewBox="0 0 200 200" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="crayon-texture-wipe">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </defs>
+  <g filter="url(#crayon-texture-wipe)" stroke="var(--doodle-stroke, #3A3A3A)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <!-- 斜放的橡皮擦：目标详情页·「抹去」（彻底删除）专用 -->
+    <path d="M 68 118 C 82 103, 98 89, 114 77 C 125 84, 135 94, 142 105 C 128 119, 112 134, 97 145 C 86 137, 76 128, 68 118 Z" fill="var(--doodle-pink, #F5B7B1)" fill-opacity="0.6" stroke="none" />
+    <path d="M 68 118 C 82 103, 98 89, 114 77 C 125 84, 135 94, 142 105 C 128 119, 112 134, 97 145 C 86 137, 76 128, 68 118 Z" fill="none" />
+    <!-- 橡皮上的分界线（纸套） -->
+    <path d="M 83 103 C 93 112, 102 122, 111 131" fill="none" stroke-width="2" />
+    <!-- 抹去的痕迹：两道小弧线与两点碎屑 -->
+    <path d="M 50 146 C 60 149, 70 149, 78 147" fill="none" stroke-width="2" />
+    <path d="M 44 158 C 51 160, 58 160, 64 159" fill="none" stroke-width="2" />
+    <path d="M 88 158 C 90 159, 91 160, 91 161" fill="none" stroke-width="2" />
+    <path d="M 104 162 C 106 163, 107 164, 107 165" fill="none" stroke-width="2" />
+  </g>
+</svg>

@@ -1,0 +1,15 @@
+<svg viewBox="0 0 48 48" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="ct-tab-stats-on">
+      <feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="3" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.2" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </defs>
+  <!-- 三根小立柱（统计·选中） -->
+  <g filter="url(#ct-tab-stats-on)" fill="none" stroke="#B87B5A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 9.8 36.2 C 19 35.4, 30 36.8, 38.4 35.9" />
+    <path d="M 14.2 36 C 14 32.4, 14.3 29.6, 14.1 26.4" />
+    <path d="M 23.9 36.2 C 23.6 29.6, 24.1 22.6, 23.9 17.4" />
+    <path d="M 33.4 36 C 33.7 30.6, 33.2 26.4, 33.5 22.6" />
+  </g>
+</svg>
